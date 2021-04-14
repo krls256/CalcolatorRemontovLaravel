@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\MainUserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ use App\Http\Controllers\Videos;
 
 Route::get('/', [globalController::class, 'index']);
 Route::get('rating', [globalController::class, 'rating']);
-Route::view('amateur', 'calculator.amateur');
+Route::get('amateur', [MainUserController::class, 'amateur']);
 Route::get('professional', [globalController::class, 'professional']);
 
 Route::get('video', [Videos::class, 'getPage']);
@@ -35,7 +36,7 @@ Route::get('price', [PriceListController::class, 'get']);
 
 Route::get('download', function(Request $req) {
     $file_path = storage_path() . '/app/';
-    
+
     return response()->download($file_path . $req->url);
 });
 
@@ -43,11 +44,11 @@ Route::get('download', function(Request $req) {
 Route::group(['prefix' => 'rating'], function( $route ) {
     $get = new CompanyController();
 
-    $route->get('/{name}', function( $name ) use ( $get ) { 
+    $route->get('/{name}', function( $name ) use ( $get ) {
         return view('company', $get->getCompanyInfo($name) );
     });
-    
-    $route->get('/{name}/{page}', function( $name, $page ) use ( $get ) { 
+
+    $route->get('/{name}/{page}', function( $name, $page ) use ( $get ) {
         return view('company', $get->getCompanyInfo($name, $page) );
     });
 });
@@ -57,7 +58,7 @@ Route::group(['prefix' => 'rating'], function( $route ) {
 # Подключаем административную панель
 Route::group(['prefix' => 'admin'], function() {
 
-    Route::group(['middleware' => ['auth', 'web']], function( $route ) { 
+    Route::group(['middleware' => ['auth', 'web']], function( $route ) {
         $route->view('/', 'admin.home');         # Главная
         $route->view('home', 'admin.home');      # Главная
         $route->get('logout', [AuthController::class, 'logout']);
@@ -69,7 +70,7 @@ Route::group(['prefix' => 'admin'], function() {
         $route->get('del/{id}', [CompanyController::class, 'del']); # Удаление компании
 
         $route->view('add', 'admin.company.add');                   # Создание компании
-        
+
         # Редактирование компании
         $route->get('{name}', function( $name ) {
             $get = new CompanyController();
@@ -81,18 +82,18 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => 'estimates', 'middleware' => ['auth', 'web']], function( $route ) {
         $route->get('/', [EstimatesController::class, 'getEstimates']);             # Список компаний
         $route->get('edit/{id}', [EstimatesController::class, 'editEstimates']);    # Редактирование сметы
-        $route->get('add', function(){                                          
+        $route->get('add', function(){
             $get = DB::table('company')
                 ->select("company.*")
                 ->leftJoin('estimates', 'estimates.company_id', '=', 'company.id')
                 ->whereNull('estimates.company_id')
                 ->get();
 
-            
+
             return view('admin.estimates.add', ['companies' => $get]);
         });
         $route->get('del/{id}', [EstimatesController::class, 'delete']);
-        
+
     });
 
     Route::group(['prefix' => 'users', 'middleware' => ['auth', 'web']], function( $route ) {
@@ -120,8 +121,8 @@ Route::group(['prefix' => 'admin'], function() {
             $sql = DB::table('meta_price')->where('id', $id);
             $companyId = $sql->first();
             $sql->delete();
-            
-            if ($req->isMethod('get')) 
+
+            if ($req->isMethod('get'))
                 return redirect('admin/price/edit/' . $companyId->company_id);
             else
                 return response()->json([
@@ -130,7 +131,7 @@ Route::group(['prefix' => 'admin'], function() {
                 ]);
         });
 
-        $route->get('edit/{id}', function(int $id) { 
+        $route->get('edit/{id}', function(int $id) {
             $get = DB::table('company')
                 ->where('id', $id)
                 ->first();
@@ -155,7 +156,7 @@ Route::group(['prefix' => 'admin'], function() {
 
 # Обработка API запросов
 Route::prefix('ajax')->group(function( $route ) {
-    
+
     $route->post('sign_in', [AuthController::class, 'auth']);   # Авторизация
     $route->post('score', [CalculatorController::class, 'score']);
     $route->post('lite', [CalculatorController::class, 'lite']);
@@ -172,7 +173,7 @@ Route::prefix('ajax')->group(function( $route ) {
         $route->post('estimates/edit', [EstimatesController::class, 'edit']);
 
         $route->post('reviews/delete', [globalController::class, 'reviewDelete']);
-        
+
         $route->post('price/add', [PriceListController::class, 'add']);
     });
 });
