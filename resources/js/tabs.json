@@ -1,0 +1,717 @@
+{
+  "tabs": {
+    "1": {
+      "title": "Кухня",
+      "name": "kitchen",
+      "blocks": [
+        [{
+          "type": "input",
+          "name": "long",
+          "placeholder": "Длина",
+          "value": "м",
+          "title": "Длина комнаты"
+        }, {
+          "type": "input",
+          "name": "width",
+          "placeholder": "Ширина",
+          "value": "м",
+          "title": "Ширина комнаты"
+        }], [{
+          "type": "input",
+          "name": "windows",
+          "placeholder": "Кол-во.",
+          "val": "0",
+          "value": "шт.",
+          "title": "Количество окон"
+        }, {
+          "type": "select",
+          "name": "сeiling",
+          "title": "Отделка потолка",
+          "value": [{
+            "name": "",
+            "value": "Без отделки"
+          }, {
+            "name": "stretch",
+            "value": "Натяжной"
+          }, {
+            "name": "сoloration",
+            "value": "Окраска"
+          }]
+        }], [{
+          "type": "select",
+          "name": "wall",
+          "title": "Отделка стен",
+          "value": [{
+            "name": "",
+            "value": "Без отделки"
+          }, {
+            "name": "wallpaper",
+            "value": "Обои"
+          }, {
+            "name": "coloration",
+            "value": "Окраска"
+          }]
+        }, {
+          "type": "select",
+          "name": "floor",
+          "title": "Отделка пола",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            }, {
+              "name": "laminate",
+              "value": "Ламинат"
+            },  {
+              "name": "tile",
+              "value": "Плитка"
+            }, {
+              "name": "parquet",
+              "value": "Паркетная доска"
+            }, {
+              "name": "stoneware",
+              "value": "Кирамогранит"
+          }]
+        }]
+      ]
+    },
+    "2": {
+      "title": "Ванная",
+      "name": "bathroom",
+      "blocks": [
+        [{
+          "type": "input",
+          "name": "long",
+          "placeholder": "Длина",
+          "value": "м",
+          "title": "Длина комнаты"
+        }, {
+          "type": "input",
+          "name": "width",
+          "placeholder": "Ширина",
+          "value": "м",
+          "title": "Ширина комнаты"
+        }], [{
+          "type": "select",
+          "name": "сeiling",
+          "title": "Отделка потолка",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            }, {
+              "name": "stretch",
+              "value": "Натяжной"
+            }, {
+              "name": "pvc",
+              "value": "Подвесной"
+            }, {
+              "name": "сoloration",
+              "value": "Окраска"
+          }]
+        }, {
+          "type": "select",
+          "name": "wall",
+          "title": "Отделка стен",
+          "value": [{
+            "name": "",
+            "value": "Без отделки"
+          }, {
+            "name": "tile",
+            "value": "Плитка"
+          }, {
+            "name": "сoloration",
+            "value": "Водостойкая краска"
+          }]
+        }], [{
+          "type": "select",
+          "name": "floor",
+          "title": "Отделка пола",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            }, {
+              "name": "tile",
+              "value": "Плитка"
+            }, {
+              "name": "laminate",
+              "value": "Ламинат(водостойкий)"
+            }, {
+              "name": "stoneware",
+              "value": "Кирамогранит"
+          }]
+        }]
+      ] 
+    },
+    "3": {
+      "name": "badroom",
+      "title": "Жилая",
+      "blocks": [
+        [{
+          "type": "input",
+          "name": "long",
+          "placeholder": "Длина",
+          "value": "м",
+          "title": "Длина комнаты"
+        }, {
+          "type": "input",
+          "name": "width",
+          "placeholder": "Ширина",
+          "value": "м",
+          "title": "Ширина комнаты"
+        }], [{
+            "type": "input",
+            "name": "windows",
+            "placeholder": "Кол-во.",
+            "val": "0",
+            "value": "шт.",
+            "title": "Количество окон"
+          }, {
+          "type": "select",
+          "name": "сeiling",
+          "title": "Отделка потолка",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            },{
+              "name": "stretch",
+              "value": "Натяжной"
+            }, {
+              "name": "сoloration",
+              "value": "Окраска"
+          }]
+        }], [{
+          "type": "select",
+          "name": "wall",
+          "title": "Отделка стен",
+          "value": [{
+            "name": "",
+            "value": "Без отделки"
+          }, {
+            "name": "wallpaper",
+            "value": "Обои"
+          }, {
+            "name": "сoloration",
+            "value": "Окраска"
+          }]
+        }, {
+          "type": "select",
+          "name": "floor",
+          "title": "Отделка пола",
+          "value": [{
+            "name": "",
+            "value": "Без отделки"
+          }, {
+            "name": "laminate",
+            "value": "Ламинат"
+          }, {
+            "name": "parquet",
+            "value": "Паркетная доска"
+          }]
+        }]
+      ]
+    },
+    "4": {
+      "title": "Прихожая",
+      "name": "hallway",
+      "blocks": [
+        [{
+          "type": "input",
+          "name": "long",
+          "placeholder": "Длина",
+          "value": "м",
+          "title": "Длина комнаты"
+        }, {
+          "type": "input",
+          "name": "width",
+          "placeholder": "Ширина",
+          "value": "м",
+          "title": "Ширина комнаты"
+        }],
+        [{
+          "type": "select",
+          "name": "сeiling",
+          "title": "Отделка потолка",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            }, {
+              "name": "stretch",
+              "value": "Натяжной"
+            }, {
+              "name": "сoloration",
+              "value": "Окраска"
+            }]
+        }, {
+          "type": "select",
+          "name": "wall",
+          "title": "Отделка стен",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            }, {
+              "name": "wallpaper",
+              "value": "Обои"
+            }, {
+              "name": "coloration",
+              "value": "Окраска"
+            }]
+        }], [{
+          "type": "select",
+          "name": "floor",
+          "title": "Отделка пола",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            }, {
+              "name": "laminate",
+              "value": "Ламинат"
+            }, {
+              "name": "parquet",
+              "value": "Паркетная доска"
+            }, {
+              "name": "tile",
+              "value": "Плитка"
+            }, {
+              "name": "stoneware",
+              "value": "Кирамогранит"
+          }]
+        }]
+      ]
+    },
+    "5": {
+      "title": "Туалет",
+      "name": "toilet",
+      "blocks": [
+        [{
+          "type": "input",
+          "name": "long",
+          "placeholder": "Длина",
+          "value": "м",
+          "title": "Длина комнаты"
+        }, {
+          "type": "input",
+          "name": "width",
+          "placeholder": "Ширина",
+          "value": "м",
+          "title": "Ширина комнаты"
+        }], [{
+          "type": "select",
+          "name": "сeiling",
+          "title": "Отделка потолка",
+          "value": [{
+            "name": "",
+            "value": "Без отделки"
+          }, {
+            "name": "stretch",
+            "value": "Натяжной"
+          }, {
+            "name": "сoloration",
+            "value": "Окраска"
+          },  {
+            "name": "pvc",
+            "value": "Подвесной"
+          }]
+        }, {
+          "type": "select",
+          "name": "wall",
+          "title": "Отделка стен",
+          "value": [{
+            "name": "",
+            "value": "Без отделки"
+          }, {
+            "name": "tile",
+            "value": "Плитка"
+          }, {
+            "name": "wallpaper",
+            "value": "Обои"
+          }, {
+            "name": "coloration",
+            "value": "Окраска"
+          }]
+        }], [{
+          "type": "select",
+          "name": "floor",
+          "title": "Отделка пола",
+          "value": [{
+              "name": "",
+              "value": "Без отделки"
+            }, {
+              "name": "laminate",
+              "value": "Ламинат"
+            },  {
+              "name": "tile",
+              "value": "Плитка"
+            }, {
+              "name": "parquet",
+              "value": "Паркетная доска"
+            }, {
+              "name": "stoneware",
+              "value": "Кирамогранит"
+          }]
+        }]
+      ]
+    }
+  }, 
+  "old": {
+    "1": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "screed",
+          "work": "floor",
+          "value": "Стяжка пола"
+        }, {
+          "type": "checkbox",
+          "name": "floor_primer",
+          "work": "floor",
+          "value": "Грунтовка полов"
+        }], [{
+          "type": "checkbox",
+          "name": "plinth",
+          "work": "change",
+          "value": "Замена плинтусов"
+        }, {
+          "type": "checkbox",
+          "name": "wall_primer",
+          "work": "wall",
+          "value": "Грунтовка стен"
+        }], [{
+          "type": "checkbox",
+          "name": "plaster",
+          "work": "wall",
+          "value": "Штукатурка стен"
+        }, {
+          "type": "checkbox",
+          "name": "putty",
+          "work": "wall",
+          "value": "Шпатлевка стен"
+        }], [{
+          "type": "checkbox",
+          "name": "sink",
+          "work": "installing",
+          "value": "Установка раковины"
+        }, {
+          "type": "checkbox",
+          "name": "piping",
+          "work": "installing",
+          "value": "Разводка труб"
+        }], [{
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "change",
+          "value": "Замена розеток/выключателей"
+        }]
+      ]
+    },
+    "2": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "toilet",
+          "work": "installing",
+          "value": "Установка унитаза"
+        }, {
+          "type": "checkbox",
+          "name": "toilet",
+          "work": "dismantling",
+          "value": "Демонтаж унитаза"
+        }], [{
+          "type": "checkbox",
+          "name": "bath",
+          "work": "change",
+          "value": "Замена ванны"
+        }, {
+          "type": "checkbox",
+          "name": "towelRail",
+          "work": "change",
+          "value": "Замена полотенцесушителя"
+        }], [{
+          "type": "checkbox",
+          "name": "sink",
+          "work": "change",
+          "value": "Замена раковины"
+        }, {
+          "type": "checkbox",
+          "name": "piping",
+          "work": "installing",
+          "value": "Разводка труб"
+        }], [{
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "change",
+          "value": "Замена розеток/выключателей"
+        }, {
+          "type": "checkbox",
+          "name": "plaster",
+          "work": "installing",
+          "value": "Штукатурка стен"
+        }], [{
+          "type": "checkbox",
+          "name": "floor_primer",
+          "work": "installing",
+          "value": "Грунтовка пола"
+        }, {
+          "type": "checkbox",
+          "name": "wall_primer",
+          "work": "installing",
+          "value": "Грунтовка стун"
+        }]
+      ]
+    },
+    "3": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "screed",
+          "work": "floor",
+          "value": "Стяжка пола"
+        }, {
+          "type": "checkbox",
+          "name": "floor_primer",
+          "work": "floor",
+          "value": "Грунтовка полов"
+        }], [{
+          "type": "checkbox",
+          "name": "plinth",
+          "work": "change",
+          "value": "Замена плинтусов"
+        }, {
+          "type": "checkbox",
+          "name": "wall_primer",
+          "work": "wall",
+          "value": "Грунтовка стен"
+        }], [{
+          "type": "checkbox",
+          "name": "plaster",
+          "work": "wall",
+          "value": "Штукатурка стен"
+        }, {
+          "type": "checkbox",
+          "name": "putty",
+          "work": "wall",
+          "value": "Шпатлевка стен"
+        }], [{
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "change",
+          "value": "Замена розеток/выключателей"
+        }]
+      ]
+    },
+    "4": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "screed",
+          "work": "floor",
+          "value": "Стяжка пола"
+        },  {
+          "type": "checkbox",
+          "name": "floor_primer",
+          "work": "floor",
+          "value": "Грунтовка полов"
+        }], [{
+          "type": "checkbox",
+          "name": "plinth",
+          "work": "change",
+          "value": "Замена плинтусов"
+        }, {
+          "type": "checkbox",
+          "name": "wall_primer",
+          "work": "wall",
+          "value": "Грунтовка стен"
+        }], [{
+          "type": "checkbox",
+          "name": "plaster",
+          "work": "wall",
+          "value": "Штукатурка стен"
+        }, {
+          "type": "checkbox",
+          "name": "putty",
+          "work": "wall",
+          "value": "Шпаклевка стен"
+        }]
+      ]
+    },
+    "5": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "toilet",
+          "work": "installing",
+          "value": "Установка унитаза"
+        }, {
+          "type": "checkbox",
+          "name": "toilet",
+          "work": "dismantling",
+          "value": "Демонтаж унитаза"
+        }], [{
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "change",
+          "value": "Замена розеток/выключателей"
+        }, {
+          "type": "checkbox",
+          "name": "plaster",
+          "work": "installing",
+          "value": "Штукатурка стен"
+        }], [{
+          "type": "checkbox",
+          "name": "floor_primer",
+          "work": "installing",
+          "value": "Грунтовка пола"
+        }, {
+          "type": "checkbox",
+          "name": "wall_primer",
+          "work": "installing",
+          "value": "Грунтовка стун"
+        }]
+      ]
+    }
+  }, 
+  "new": {
+    "1": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "sink",
+          "work": "installing",
+          "value": "Установка раковины"
+        }, {
+          "type": "checkbox",
+          "name": "piping",
+          "work": "installing",
+          "value": "Разводка труб"
+        }], [{
+          "type": "checkbox",
+          "name": "plinth",
+          "work": "installing",
+          "value": "Установка плинтусов"
+        }, {
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "installing",
+          "value": "Установка розеток/выключателей"
+        }]
+      ]
+    },
+    "2": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "plumbing",
+          "work": "installing",
+          "value": "Установка сантехники"
+        }, {
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "installing",
+          "value": "Установка розеток/выключателей"
+        }]
+      ]
+    },
+    "3": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "plinth",
+          "work": "installing",
+          "value": "Установка плинтусов"
+        }, {
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "installing",
+          "value": "Установка розеток/выключателей"
+        }]
+      ]
+    },
+    "4": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "plinth",
+          "work": "installing",
+          "value": "Установка плинтусов"
+        }, {
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "installing",
+          "value": "Установка розеток/выключателей"
+        }]
+      ]
+    },
+    "5": {
+      "blocks": [
+        [{
+          "type": "checkbox",
+          "name": "toilet",
+          "work": "installing",
+          "value": "Установка унитаза"
+        }, {
+          "type": "checkbox",
+          "name": "plinth",
+          "work": "installing",
+          "value": "Установка плинтусов"
+        }], [{
+          "type": "checkbox",
+          "name": "sockets",
+          "work": "installing",
+          "value": "Установка розеток/выключателей"
+        }]
+      ]
+    }
+  },
+  "name": {
+    "bathroom": "Ванна",
+    "kitchen": "Кухня",
+    "badroom": "Жилая комната",
+    "hallway": "Прихожая",
+    "toilet": "Туалет"
+  }, 
+  "list": {
+    "floor": {
+      "parquet": "Укладка паркетной доски",
+      "floor_primer": "Грунтовка пола(x2)",
+      "laminate": "Укладка ламината",
+      "tile": "Укладка плитки(пол)",
+      "screed": "Выравнивание пола",
+      "stoneware": "Укладка кирамогранита(пол)"
+    },
+    "wall":{
+      "wall_primer": "Грунтовка стен(x2)",
+      "wallpaper": "Оклейка стен обоями",
+      "сoloration": "Окраска стен",
+      "screed": "Выравнивание стен",
+      "tile": "Укладка плитки(стены)",
+      "putty": "Шпаклевка стен",
+      "plaster": "Штукатурка стен"
+    },
+    "сeiling": {
+      "сoloration": "Окраска потолка",
+      "pvc": "Подвесной потолок",
+      "stretch": "Натяжной потолок"
+    },
+    "dismantling": {
+      "bath": "Демонтаж ванны",
+      "toilet": "Демонтаж унитаза",
+      "sink": "Демонтаж раковины",
+      "towelRail": "Демонтаж полотенцесушителя",
+      "plinth": "Демонтаж плинтуса",
+      "sockets": "Демонтаж электроточки"
+    },
+    "installing": {
+      "piping": "Разводка труб",
+      "bath": "Установка ванны",
+      "toilet": "Установка унитаза",
+      "towelRail": "Монтаж полотенцесушителя",
+      "sink": "Установка раковины",
+      "plinth": "Монтаж плинтуса",
+      "sockets": "Монтаж электроточки"
+    },
+    "still": {
+      "name": "Доп. услуги"
+    },
+    "all": {
+      "electrical": "Замена электрики"
+    }
+  }
+}

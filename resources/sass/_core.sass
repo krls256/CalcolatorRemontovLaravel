@@ -1,0 +1,19 @@
+@import extend
+
+col
+    width: 100%
+
+@include col("")
+
+@media screen and (max-width: 540px)
+    @include col("sm")
+
+@media screen and (max-width: 720px)
+    @include col("md")
+
+@media screen and (max-width: 960px)
+    @include col("lg")
+
+.row
+    display: flex
+    flex-wrap: wrap

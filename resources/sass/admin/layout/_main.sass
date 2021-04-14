@@ -1,0 +1,274 @@
+@import ../../core
+
+nav
+  position: fixed
+  z-index: 11
+  top: 0
+  left: 0
+  background: #fff
+  width: 100%
+  box-shadow: 0px 0px 5px 0px #dadada
+
+  .content
+    max-width: 1200px
+    display: flex
+    padding: 0 10px
+    margin: 0 auto
+    height: 60px
+    align-items: center
+
+    .logo
+      color: $color-stack
+      background: url('../../images/calculator.svg')
+      width: 36px
+      height: 36px
+
+    .exit 
+      display: flex
+      align-items: center
+      height: 100%
+      margin-left: auto
+      color: rgba(0, 0, 0, 0.54)
+
+      svg
+        width: 18px
+        height: 18px
+        margin-right: 8px
+        fill: rgba(0, 0, 0, 0.54)
+
+      &:hover
+        transition: all .2s ease
+        color: $color-stack
+
+      &:hover svg
+        transition: all .2s ease
+        fill: $color-stack
+
+.layout.main
+  position: relative
+  max-width: 1200px
+  width: 100%
+  margin: 0 auto
+  display: flex
+  padding: 0 10px
+  margin-top: 80px
+
+  .notice
+    padding: 10px
+    border: 1px solid 
+    color: #5a5a5a
+    border-color: #eaeaea
+
+    &.success
+      border-color: #54bf02
+      background: #cbeacc !important
+
+    &.error
+      border-color: #ff8c8c
+      background: #ffd4d4 !important
+
+  .box
+    position: relative
+    background: #fff
+    border-radius: 2px
+    margin-bottom: 15px
+
+    &.th
+      padding: 10px 20px !important
+      margin-bottom: 5px
+      
+    &-list
+      display: flex
+      align-items: center
+      padding: 20px !important
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.08), 0 0 3px 0 rgba(0, 0, 0, 0.08)
+
+      &__img
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 55px
+        max-height: 55px
+        margin-right: 20px
+
+        img
+          display: inherit
+          height: 100%
+          max-height: 55px
+          max-width: 55px
+
+      &__name
+        width: 23%
+
+        > a
+          color: #69af25
+          font-size: 18px
+
+        .del
+          color: #ff3737
+        
+        > span
+          margin-top: 5px
+          display: flex
+          font-size: 14px
+
+          a
+            color: rgba(0, 0, 0, 0.54)
+            margin-right: 20px
+
+      &__send
+          margin: 0 0 0 auto
+
+          a
+            display: block
+
+    &__header
+      display: flex
+      padding: 15px 30px 0
+      align-items: center
+      color: rgba(0, 0, 0, 0.54)
+
+    [class^="box__img-"]
+        border-radius: 6px
+        padding: 6px
+        margin-right: 10px
+
+    @each $name, $color in $backColor
+      &__img-#{"" + $name}
+        background: #{$color}
+
+    @each $name, $url in $iconUrl
+      .icon-#{$name}::before
+        content: ""
+        display: block
+        width: 14px
+        height: 14px
+        background: url-img("#{$url}.svg")
+
+    &__title
+      font-size: 18px
+      color: #000
+      font-weight: 600
+      padding: 15px 30px
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.12)
+      border-radius: 2px 2px 0 0
+
+  .trumbowyg
+
+    &-box, &-modal
+      border: 0
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.08), 0 0 3px 0 rgba(0, 0, 0, 0.08)
+      border-radius: 2px
+
+      svg
+        fill:#848484 !important
+
+    &-button-pane
+      z-index: 1
+      background: #f9f9f9
+      border-radius: 2px 2px 0 0
+
+      &::after
+        top: 35px
+      
+      button
+        margin-bottom: 0
+
+        &.trumbowyg-active
+          background:#e2e2e2
+    &-editor
+      p
+        margin: 0 0 15px 0
+
+  .left
+    position: relative
+    max-width: 280px
+    width: 100%
+    margin-right: 15px
+
+    &__menu
+      margin: 0
+      padding: 0
+      list-style: none
+
+      li
+        cursor: pointer
+
+        &:hover, .active
+          background: rgba(0, 0, 0, 0.02)
+
+        a 
+          display: flex
+          align-items: center
+          padding: 10px 15px
+          color: #000
+
+          &:before
+            content: ''
+            width: 26px
+            height: 26px
+            margin-right: 10px
+          
+          &:after
+            content: ""
+            display: block
+            margin-left: auto
+            border: solid #9c9c9c
+            border-width: 0 2px 2px 0
+            transform: rotate(-45deg)
+            -webkit-transform: rotate(-45deg)
+            width: 6px
+            height: 6px
+
+        &:nth-child(1) 
+          a:before 
+            background: url("../../images/business.svg")
+        
+        &:nth-child(2) 
+          a:before 
+            background: url("../../images/list.svg")
+        
+        &:nth-child(3) 
+          a:before 
+            background: url("../../images/questionnaire.svg")
+        &:nth-child(4) 
+          a:before 
+            background: url("../../images/price.svg")
+        &:nth-child(5) 
+          a:before 
+            background: url("../../images/home.svg")
+            
+            
+
+    .box
+      padding: 10px 0
+  
+  .content
+    flex: 1 0 0
+
+    .title-block
+      display: flex
+      align-items: center
+      margin-bottom: 15px
+
+      h1
+        margin: 0
+        font-size: 24px
+      
+      .btn 
+        margin-left: 50px
+
+      .picked
+        margin-top: 5px
+
+    .form
+      .box .row:last-child
+        padding-bottom: 15px
+
+      .footer
+        padding: 10px 15px 20px
+
+    
+
+
+
