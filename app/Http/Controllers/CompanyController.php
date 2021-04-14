@@ -7,16 +7,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 use Carbon\Carbon;
+use Illuminate\View\View;
 
 
 class CompanyController extends Controller
-{   
+{
 
     private $reviewShow = 10; # Сколько отзывов отображать на странице
 
     /**
      * Пранслитератор url
-     * 
+     *
      * @param string $value
      * @return string
      */
@@ -31,21 +32,21 @@ class CompanyController extends Controller
             'ш' => 'sh',   'щ' => 'sch',  'ь' => '',     'ы' => 'y',    'ъ' => '',
             'э' => 'e',    'ю' => 'yu',   'я' => 'ya',
         );
-    
+
         $value = mb_strtolower($value);
         $value = strtr($value, $converter);
         $value = mb_ereg_replace('[^-0-9a-z]', '-', $value);
         $value = mb_ereg_replace('[-]+', '-', $value);
-        $value = trim($value, '-');	
-    
+        $value = trim($value, '-');
+
         return $value;
     }
 
     /**
      * Загружаем логотип компании
-     * 
+     *
      * @param binary $img
-     * @return string 
+     * @return string
      */
     private function logoSave( $img )
     {
@@ -57,9 +58,9 @@ class CompanyController extends Controller
 
     /**
      * Загружаем логотип компании
-     * 
+     *
      * @param binary $img
-     * @return string 
+     * @return string
      */
     private function estimateSave( $estimateSave )
     {
@@ -130,7 +131,7 @@ class CompanyController extends Controller
 
     /**
      * Редактирование компании
-     * 
+     *
      * @return json
      */
     public function editCompany(Request $req)
@@ -189,8 +190,8 @@ class CompanyController extends Controller
 
     /**
      * Приобразуем телефон в читабельный
-     * 
-     * @return string 
+     *
+     * @return string
      */
     function phone_format( $phone, $format, $mask = '_' )
     {
@@ -231,12 +232,12 @@ class CompanyController extends Controller
             ->offset($list)
             ->get();
 
-        foreach($reviews as $val) { 
-            if(strip_tags(mb_strlen($val->text)) >= 400) { 
+        foreach($reviews as $val) {
+            if(strip_tags(mb_strlen($val->text)) >= 400) {
                 $val->more = true;
                 $val->originalText = $val->text;
                 $val->text = mb_strimwidth($val->text, 0, 400, '...');
-            } else { 
+            } else {
                 $val->more = false;
                 $val->originalText = $val->text;
             }
@@ -247,11 +248,12 @@ class CompanyController extends Controller
 
     /**
      * Информация о компании
-     * 
+     *
      * @param string $name
-     * @return view
+     * @param int $page
+     * @return array
      */
-    public function getCompanyInfo( $name, $page = 1 ) 
+    public function getCompanyInfo( $name, $page = 1 )
     {
         $row    = DB::table('company')
             ->where('url', $name)
@@ -268,7 +270,7 @@ class CompanyController extends Controller
             'name'          => $row->name,
             'logo'          => $row->logo,
             'description'   => $row->discription,
-            'address'       => $row->address, 
+            'address'       => $row->address,
             'youtube'       => $row->youtube,
             'yell_id'       => $row->yell_id,
             'flamp_id'      => $row->flamp_id,
@@ -296,11 +298,11 @@ class CompanyController extends Controller
         ];
     }
 
-    /** 
+    /**
      * Удаление компаний
      */
     public function del($id)
-    {   
+    {
         try {
             DB::table('company')->where('id', $id)->delete();
             $estimates = DB::table('estimates')->where('company_id', $id);
@@ -314,5 +316,32 @@ class CompanyController extends Controller
         } catch (QueryException $e) {
             return redirect('/admin/companies?status=error');
         }
+    }
+
+    /**
+     * страница компаний
+     * @param $name
+     * @param int $page
+     * @return View
+     */
+
+    public function show($name, $page = 1) {
+        return view('company', $this->getCompanyInfo($name, $page));
+    }
+
+    /**
+     * @return View
+     */
+    public function add() {
+        return view('admin.company.add');
+    }
+
+    /**
+     * @param $name
+     * @return View
+     */
+
+    public function edit($name) {
+        return view('admin.company.edit', $this->getCompanyInfo($name));
     }
 }
