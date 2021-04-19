@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Repositories\Seeder\ImportRepository;
+use App\Repositories\Seeder\ImportDBRepository;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -10,11 +10,11 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      *
-     * @param ImportRepository $repository
+     * @param ImportDBRepository $repository
      * @return void
      * @throws \Exception
      */
-    public function run(ImportRepository $repository)
+    public function run(ImportDBRepository $repository)
     {
         $data = $repository->getDBDump();
 

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Calculator\LiteCalculatorRequest;
+use App\Services\User\CalculateInfoAboutRoomsService;
+use App\Services\User\CalculateLiteService;
+use App\Services\User\ProfessionalCalculatorDataService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\CalculatorDB;
 
 class CalculatorController extends Controller
 {
@@ -16,7 +21,7 @@ class CalculatorController extends Controller
 
   /**
    * Сортируем параметры
-   * 
+   *
    * @param array $req - Данные request
    * @return array - Сортированый массив
    */
@@ -32,7 +37,7 @@ class CalculatorController extends Controller
 
   /**
    * Считаем и сортируем по цене
-   * 
+   *
    * @param array $data - Получиные данные из бызы
    */
   public function total($data)
@@ -54,13 +59,13 @@ class CalculatorController extends Controller
   /****************************************************************************************************/
   /**
    * Считаем цену
-   * 
+   *
    * @param array $array - Массив с ценнами на услугу
-   * 
+   *
    * @return int
    */
-  public function sum( $array ) 
-  { 
+  public function sum( $array )
+  {
     $return     = [];
     $height     = $this->all['height'] ? $this->all['height'] : 2.7;
     $P          = ($this->long*2)+($this->width*2);
@@ -90,9 +95,9 @@ class CalculatorController extends Controller
           $metric = 'п/м';
           break;
       }
-
+        Log::info([$wellArea, $height, $this->long, $this->width, $this->windows]);
       $value->dimension = 1;
-  
+
       # Стоимость * площадь стен
       if ( $value->type == "wall") {
         $value->dimension = round($wellArea/0.5)*.5;
@@ -100,7 +105,7 @@ class CalculatorController extends Controller
       }
 
       # Стоимость * площадь пола или потолка
-      if ( $value->type == "сeiling" || $value->type == "floor") { 
+      if ( $value->type == "сeiling" || $value->type == "floor") {
         $value->dimension = round($area/0.5)*.5;
         $price            = $price*$area;
       }
@@ -141,7 +146,7 @@ class CalculatorController extends Controller
       $value->price   = (int) $price;  # Приобразуем строку в число
       $value->metric  = $metric;
 
-      foreach ($value as $name => $row) 
+      foreach ($value as $name => $row)
       {
         if ( count($array) == 1 )
           $return[$name] = $row;
@@ -149,20 +154,20 @@ class CalculatorController extends Controller
           $return[$key][$name] = $row;
       }
     }
-  
+
     return $return;
   }
 
   /**
    * Подсчитываем дополнительные услуги
-   * 
+   *
    * @param mixed $data
    */
   public function get( $data )
   {
     $query = new CalculatorDB($this->estimateId);
-  
-    foreach ($data as $key => $value) 
+
+    foreach ($data as $key => $value)
     {
       # Добаляем в запрос сантехнику
       if ($key == 'plumbing') {
@@ -181,25 +186,23 @@ class CalculatorController extends Controller
 
       $query->setParametr($key, $value);
     }
-    
     $ret = $query->get();
-    
+
     return $ret;
   }
 
   /**
    * получаем цены пы комнатам
-   * 
+   *
    * @param int   $id     - ID компании
    * @param array $value  - Данные
    * @param float $height - Высота потолка
-   * 
+   *
    * @return array
    */
   public function getPriceRoom($value)
   {
     $res = [];
-
     # Перебераем комнату одного типа
     foreach ($value as $key => $value) {
       $param          = [];
@@ -212,9 +215,9 @@ class CalculatorController extends Controller
       unset($value['width']);
       unset($value['windows']);
       unset($value['divider']);
-
       # Добавляем отделку если это ноостройка
       if ( $this->all['type'] == '0' && !isset($this->all['calc']) ) {
+
         switch ($this->typeRoom) {
           case 'bathroom':
             $value['still']['piping']       = 'installing';
@@ -246,10 +249,10 @@ class CalculatorController extends Controller
   }
 
   /**
-   * Получаем общие 
-   * 
+   * Получаем общие
+   *
    * @param array $data - данные из калькулятора
-   * 
+   *
    * @return void
    */
   public function allData($data)
@@ -262,34 +265,33 @@ class CalculatorController extends Controller
 
   /**
    * Подсчитываем каждую комнату
-   * 
+   *
    * @param array $data - Получиные данные из бызы
    */
   public function getRoom($data)
   {
     $ret = [];
-    
+
     foreach ($data as $key => $val) {
       if ( gettype($val) == 'array' ) {
         $ret[$key] = $this->getRoom($val);
       } else {
-        $ret[$key] = $this->sum($val);  
+        $ret[$key] = $this->sum($val);
       }
     }
 
     return $ret;
   }
 
-  /** 
+  /**
    * Счетаем
-   * 
+   *
    * @param int   $id   - ID компании
    * @param array $data - Дынные с калькулятора
    */
   public function calc($data)
-  {                       
+  {
     $res = [];
-
     # Перебераем компанту по типам
     foreach ($data as $key => $value) {
       $this->typeRoom = $key;
@@ -301,12 +303,12 @@ class CalculatorController extends Controller
 
   /**
    * Сортировка компаний по цене
-   * 
+   *
    * @param array $data - Массив с компаниями
-   * 
+   *
    * @return array
    */
-  public function companySort($data) 
+  public function companySort($data)
   {
     usort($data, function ($a, $b) {
       if ($a['price'] == $b['price']) return 0;
@@ -318,7 +320,7 @@ class CalculatorController extends Controller
 
   /**
    * Получаем данные от калькулятора
-   * 
+   *
    * @param Illuminate\Http\Request
    */
   public function score(Request $req)
@@ -327,11 +329,10 @@ class CalculatorController extends Controller
     $req      = $this->sort($req);              # Сортируем данные
     $company  = DB::table('estimates')->get();  # Получаем список смет
     $res      = [];                             # Складируем результат
-
-    # Перебераем сметы 
+    # Перебераем сметы
     foreach ($company as $key => $row) {
       $this->estimateId = $row->id;  # Пишем id компании в глобальную переменную
-      
+
       $calc = $this->calc($req);
       $com  = DB::table('company')
                 ->where('id', $row->company_id)->first();
@@ -357,8 +358,18 @@ class CalculatorController extends Controller
     return response()->json($res);
   }
 
+  public function professional(
+      Request $request,
+      CalculateLiteService $service,
+      ProfessionalCalculatorDataService $dataService
+  ) {
+      $dataPattern = $dataService->run($request);
+      $res = $service->run($dataPattern)->sortBy('price')->values();
+      return response()->json($res);
+  }
+
   /**
-   * 
+   *
    */
   public function getTypeRemont(Type $var = null)
   {
@@ -378,7 +389,7 @@ class CalculatorController extends Controller
               'wall_primer'   => 'wall',
               'sink'          => 'installing',
               'piping'        => 'installing'
-            ]  
+            ]
           ],
           'bathroom' => [
             "сeiling" => "pvc",
@@ -651,7 +662,7 @@ class CalculatorController extends Controller
             ]
           ]
         ];
-        break;  
+        break;
       case 3:
         $ret = [
           'kitchen'   => [
@@ -758,7 +769,7 @@ class CalculatorController extends Controller
 
     return $ret;
   }
-  
+
   /**
    * Считам проценит от общей площади
    */
@@ -836,7 +847,7 @@ class CalculatorController extends Controller
               "long"    => sqrt($array['aere']*0.32),
               "width"   => sqrt($array['aere']*0.32),
               "windows" => 1
-            ]), 
+            ]),
             array_merge($typeRemont['badroom'], [
               "long"    => sqrt($array['aere']*0.28),
               "width"   => sqrt($array['aere']*0.28),
@@ -857,7 +868,7 @@ class CalculatorController extends Controller
           ]
         ];
         break;
-      case 3:        
+      case 3:
         $data = [
           "kitchen"   => [
             array_merge($typeRemont['kitchen'], [
@@ -903,7 +914,7 @@ class CalculatorController extends Controller
           ]
         ];
         break;
-      case 4:        
+      case 4:
         $data = [
           "kitchen"   => [
             array_merge($typeRemont['kitchen'], [
@@ -922,12 +933,12 @@ class CalculatorController extends Controller
               "long"    => sqrt($aere*0.176),
               "width"   => sqrt($aere*0.176),
               "windows" => 1
-            ]), 
+            ]),
             array_merge($typeRemont['badroom'], [
               "long"    => sqrt($aere*0.156),
               "width"   => sqrt($array['aere']*0.156),
               "windows" => 1
-            ]), 
+            ]),
             array_merge($typeRemont['badroom'], [
               "long"    => sqrt($aere*0.137),
               "width"   => sqrt($aere*0.137),
@@ -938,7 +949,7 @@ class CalculatorController extends Controller
             array_merge($typeRemont['bathroom'], [
               "long"    => sqrt($aere*0.058),
               "width"   => sqrt($aere*0.058)
-            ]), 
+            ]),
             array_merge($typeRemont['bathroom'], [
               "long"    => sqrt($aere*0.039),
               "width"   => sqrt($aere*0.039)
@@ -965,22 +976,22 @@ class CalculatorController extends Controller
               "long"    => sqrt($aere*0.157),
               "width"   => sqrt($aere*0.157),
               "windows" => 1
-            ]), 
+            ]),
             array_merge($typeRemont['badroom'], [
               "long"    => sqrt($aere*0.157),
               "width"   => sqrt($aere*0.157),
               "windows" => 1
-            ]), 
+            ]),
             array_merge($typeRemont['badroom'], [
               "long"    => sqrt($aere*0.141),
               "width"   => sqrt($aere*0.141),
               "windows" => 1
-            ]), 
+            ]),
             array_merge($typeRemont['badroom'], [
               "long"    => sqrt($aere*0.125),
               "width"   => sqrt($aere*0.125),
               "windows" => 1
-            ]), 
+            ]),
             array_merge($typeRemont['badroom'], [
               "long"    => sqrt($aere*0.11),
               "width"   => sqrt($aere*0.11),
@@ -991,7 +1002,7 @@ class CalculatorController extends Controller
             array_merge($typeRemont['bathroom'], [
               "long"    => sqrt($aere*0.062),
               "width"   => sqrt($aere*0.062)
-            ]), 
+            ]),
             array_merge($typeRemont['bathroom'], [
               "long"    => sqrt($aere*0.047),
               "width"   => sqrt($aere*0.047)
@@ -1010,9 +1021,11 @@ class CalculatorController extends Controller
     return $data;
   }
 
-  /**
-   * Простой калькулятор ремонта
-   */
+    /**
+     * Простой калькулятор ремонта
+     * @param Request $req
+     * @return JsonResponse
+     */
   public function lite(Request $req)
   {
     Validator::make($req->all(), [
@@ -1024,21 +1037,19 @@ class CalculatorController extends Controller
     $res      = [];                             # Складируем результат
     $this->all  = [
       'type'    => $req->type,
-      'height'  => 2.7, 
+      'height'  => 2.7,
       'typeRem' => $req->typeRem,
       'calc'    => 'lite'
-    ]; 
+    ];
 
     $data = $this->getInfoRoom($req->all());
-
     foreach ($company as $row) {
       $this->estimateId = $row->id;  # Пишем id компании в глобальную переменную
-    
+
       $calc = $this->calc($data);
       $com  = DB::table('company')
         ->where('id', $row->company_id)
         ->first();
-  
       $ret = [
         'id'        => $row->id,
         'name'      => $row->name,
@@ -1056,9 +1067,17 @@ class CalculatorController extends Controller
     }
 
     $res = $this->companySort($res);
-
     return response()->json($res);
   }
 
-  
+
+  public function calculate(LiteCalculatorRequest $request, CalculateLiteService $service) {
+      $calculateService = new CalculateInfoAboutRoomsService
+      ($request->get('type'), $request->get('typeRem'), $request->get('rooms'), $request->get('aere'));
+      // aere = area (but there was a typo in request params)
+      $calcPattern = $calculateService->run();
+      $res = $service->run($calcPattern)->sortBy('price')->values();
+    return response()->json($res->toArray());
+  }
+
 }
