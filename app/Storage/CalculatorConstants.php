@@ -4,8 +4,6 @@
 namespace App\Storage;
 
 
-use Illuminate\Support\Facades\Log;
-
 class CalculatorConstants
 {
     public $width = 0;
@@ -29,13 +27,18 @@ class CalculatorConstants
     const METRIC_TYPE_PIECE = 2;
     const METRIC_TYPE_RUNNING_METER = 3;
 
-    public function resetDivider() {
+    public function resetDivider()
+    {
         $this->divider = self::DEFAULT_DIVIDER;
     }
-    public function resetWindowsQuantity() {
-        if(in_array($this->roomType, self::NO_WINDOWS_ROOM)) {
+
+    public function resetWindowsQuantity()
+    {
+        if (in_array($this->roomType, self::NO_WINDOWS_ROOM))
+        {
             $this->windowsQuantity = self::DEFAULT_WINDOWS_QUANTITY_IN_NO_WIN_ROOM;
-        } else {
+        } else
+        {
             $this->windowsQuantity = self::DEFAULT_WINDOWS_QUANTITY;
         }
 
@@ -90,7 +93,6 @@ class CalculatorConstants
 
         $pureWallsArea = (self::getPerimeterStatic($width, $length) * $height)
             - self::getDoorsArea($doorsQuantity) - self::getWindowArea($windowsQuantity);
-        Log::info([$pureWallsArea / $divider, $height, $width, $length, $windowsQuantity]);
         return $pureWallsArea / $divider;
     }
 

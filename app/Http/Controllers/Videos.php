@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class Videos extends Controller
-{   
+{
     /**
      * Парсим видео с youtube
      */
@@ -27,7 +27,7 @@ class Videos extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function setVideos()
     {
@@ -38,11 +38,11 @@ class Videos extends Controller
         foreach ($comnpany as $key => $row) {
             $get = self::parseYoutube($row->youtube);
             $list = [];
-          
+
             foreach ($get['items'] as $val) {
                 $count = DB::table('videos')->where('video_id', '=', $val['id']['videoId'])->count();
                 if ($count > 0 ) continue;
-                 
+
                 array_push($list, [
                     'video_id'      => $val['id']['videoId'],
                     'company_id'    => $row->id,
@@ -55,37 +55,20 @@ class Videos extends Controller
 
             DB::table('videos')->insert($list);
         }
-    
-    }
 
-    /**
-     * 
-     */
-    public function getPage()
-    {   
-        $getCompany = DB::table('company')->whereIn('id', function($query) { 
-            $query->select('company_id')->from('videos');
-        })->get();
-
-        foreach ($getCompany as $val) {
-            $video = DB::table('videos')->where('company_id', '=', $val->id)->get();
-            $val->video = $video;
-        }
-
-        return view('video', ['companies' => $getCompany]);
     }
 
     /**
      * Отдаем данные о видео
      */
-    public function getVideo(Request $req) 
-    { 
+    public function getVideo(Request $req)
+    {
         $valid = Validator::make($req->all(), [
             'id'    => 'required|numeric'
         ]);
 
          # Если данные не прошли валидацию
-         if ( $valid->fails() ) { 
+         if ( $valid->fails() ) {
             return response()->json([
                 'status'    => 'error',
                 'type'      => 'validation',

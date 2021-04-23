@@ -26,13 +26,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [globalController::class, 'index']);
-Route::get('rating', [globalController::class, 'rating']);
+Route::get('/', [MainUserController::class, 'home']);
+Route::get('rating', [MainUserController::class, 'rating']);
 Route::get('amateur', [MainUserController::class, 'amateur']);
-Route::get('professional', [globalController::class, 'professional']);
+Route::get('professional', [MainUserController::class, 'professional']);
+Route::get('price', [MainUserController::class, 'price']);
+Route::get('video', [MainUserController::class, 'video']);
 
-Route::get('video', [Videos::class, 'getPage']);
-Route::get('price', [PriceListController::class, 'get']);
 
 Route::get('download', [MainDownloadController::class, 'index']);
 

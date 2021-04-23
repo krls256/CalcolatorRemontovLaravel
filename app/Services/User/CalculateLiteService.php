@@ -71,7 +71,7 @@ class CalculateLiteService extends CoreService
         {
             if (gettype($name) === 'array')
             {
-                $is_still = !($type === 'still');
+                $is_still = !(in_array($type,  ['still'], true));
                 $calculatedPattern[$type] = $this->calculatePattern($name, $estimate_id, $is_still);
             } else
             {

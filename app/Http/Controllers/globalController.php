@@ -14,22 +14,6 @@ use ReCaptcha\ReCaptcha;
 class globalController extends Controller
 {
     /**
-     * Главная страница
-     */
-    public function index()
-    {
-        $homeRating = DB::table('company')
-            ->select('*' ,DB::raw('(`rating_profile` + `rating_reviews`)/2 as `ratingSort`'))
-            ->orderBy('ratingSort', "DESC");
-
-        $rating = $homeRating->limit(6)->get();
-
-        return view('index', [
-            'companies' => $rating
-        ]);
-    }
-
-    /**
      * Удаление отзывов
      */
     public function reviewDelete(Request $req)
@@ -114,36 +98,5 @@ class globalController extends Controller
             "status"    => "ok",
             "message"   => ""
         ]);
-    }
-
-    /**
-     * Страница отзывов
-     */
-    public function rating()
-    {
-        $sql = DB::table('company')
-            ->select('*' ,DB::raw('(`rating_profile` + `rating_reviews`)/2 as `ratingSort`'))
-            ->orderBy('ratingSort', "DESC");
-
-        $rating = $sql->get();
-        $super  = $sql->where('id', 8)->first();
-
-        foreach ($rating as $row) {
-            $count = DB::table('reviews')->where(['company' => $row->id, 'status' => 'active']);
-            $row->count = $count->count();
-         }
-
-        return view('rating', ['companies' => $rating, 'super' => $super]);
-    }
-
-    /**
-     *
-     */
-    public function professional() {
-        $super = DB::table('company')
-            ->where('id', 8)
-            ->first();
-
-        return view('calculator.professional', ['super' => $super]);
     }
 }
