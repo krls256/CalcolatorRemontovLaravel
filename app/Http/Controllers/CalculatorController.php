@@ -44,6 +44,7 @@ class CalculatorController extends Controller
         $res = $service->run($calcPattern)
             ->sortBy('price')
             ->values();
+//        dd($res);
         return response()->json($res->toArray());
     }
 

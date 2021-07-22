@@ -370,7 +370,7 @@ class CalculateInfoAboutRoomsService extends CoreService
                     ],
                     'bathroom'  => [
                         "сeiling" => "pvc",
-                        "wall"    => "tile",
+                        "wall"    => ["tile", "wallpaper"],
                         "floor"   => "tile",
                         "still"   => $type == 1 ? [
                             "toilet"    => "change",

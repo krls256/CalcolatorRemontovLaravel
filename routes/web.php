@@ -111,6 +111,7 @@ Route::prefix('ajax')
         $route->post('sign_in', [AuthController::class, 'auth']);   # Авторизация
         $route->post('score', [CalculatorController::class, 'professional']); // Professional calc
         $route->post('lite', [CalculatorController::class, 'calculate']);
+        $route->get('lite', [CalculatorController::class, 'calculate']);
         $route->post('sendApplication', [globalController::class, 'application']);
         $route->post('getVideo', [Videos::class, 'getVideo']);
 

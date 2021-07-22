@@ -54,7 +54,6 @@ class CalculateLiteService extends CoreService
                 $calculatedRoomType = $this->calculatePattern($pattern, $company->estimate_id);
                 $company->details[$roomType] = $calculatedRoomType;
 
-
             });
             $company->price = $this->calcTotalPrice($company->details);
             return (array) $company;
@@ -64,6 +63,7 @@ class CalculateLiteService extends CoreService
 
     private function calculatePattern($pattern, $estimate_id, $with_key = true)
     {
+
         $calculatedPattern = [];
         $this->resetPattern($pattern);
 
@@ -71,8 +71,16 @@ class CalculateLiteService extends CoreService
         {
             if (gettype($name) === 'array')
             {
-                $is_still = !(in_array($type,  ['still'], true));
-                $calculatedPattern[$type] = $this->calculatePattern($name, $estimate_id, $is_still);
+                if(in_array($type,  ['wall', 'floor', 'сeiling'], true)) {
+                    $calculatedPattern[$type] = [];
+
+                    foreach ($name as $realName) {
+                        $calculatedPattern[$type][] = $this->calculatePattern([$type => $realName], $estimate_id, false)[0];
+                    }
+                } else {
+                    $is_still = !(in_array($type,  ['still'], true));
+                    $calculatedPattern[$type] = $this->calculatePattern($name, $estimate_id, $is_still);
+                }
             } else
             {
                 $estimateItem = $this->estimatesMeta->get($this->createEstimateKey([$estimate_id, $type, $name])) ??
