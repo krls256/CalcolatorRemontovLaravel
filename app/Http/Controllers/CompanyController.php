@@ -152,7 +152,9 @@ class CompanyController extends Controller
             'estimate'      => 'mimes:pdf',
             'redecorating'  => 'required',
             'overhaul'      => 'required',
-            'turnkey_repair'=> 'required'
+            'turnkey_repair'=> 'required',
+            'dangerous_level' => 'required|integer',
+            'dangerous_reason' => 'nullable|string',
         ]);
 
         $save = array(
@@ -170,7 +172,9 @@ class CompanyController extends Controller
             'rating_profile'=> $req->profile,
             'redecorating'  => $req->redecorating,
             'overhaul'      => $req->overhaul,
-            'turnkey_repair'=> $req->turnkey_repair
+            'turnkey_repair'=> $req->turnkey_repair,
+            'dangerous_level' => $req->dangerous_level,
+            'dangerous_reason' => $req->dangerous_reason ? $req->dangerous_reason : null
         );
 
         if ( $req->logo != '') {
@@ -294,7 +298,9 @@ class CompanyController extends Controller
                 'start'     => $page-3,
                 'end'       => $page+3,
                 'pages'     =>$total/$this->reviewShow
-            ]
+            ],
+            'dangerous_level' => $row->dangerous_level,
+            'dangerous_reason' => $row->dangerous_reason,
         ];
     }
 
