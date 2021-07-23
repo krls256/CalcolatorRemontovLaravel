@@ -17,7 +17,7 @@ class CalculatorServiceRepository extends CoreDBRepository
     public function getCompaniesForCalculator() {
         $this->changeTable('estimates as es');
 
-        $column = ['es.id as estimate_id', 'es.company_id', 'cp.id as id', 'cp.url as url', 'cp.name as name', 'cp.logo as img', 'dangerous_level', 'dangerous_reason'];
+        $column = ['es.id as estimate_id', 'es.company_id', 'cp.id as id', 'cp.url as url', 'cp.name as name', 'cp.logo as img', 'danger_level', 'danger_reason'];
 
         $calcResponse = $this->startConditions()
             ->select($column)

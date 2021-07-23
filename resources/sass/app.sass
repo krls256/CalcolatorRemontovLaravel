@@ -31,7 +31,7 @@ body
     display: flex
     flex-direction: column
 
-a 
+a
     text-decoration: none
 
 p
@@ -42,14 +42,14 @@ input
         opacity: 1
         transition: opacity 200ms
         color: rgb(158, 158, 158)
-    
+
     &:focus
         @include placeholder
             opacity: .54
     &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
         -webkit-appearance: none
         margin: 0
-    
+
 label
     display: inline-block
 .super
@@ -70,7 +70,7 @@ label
             height: 22px
             background: url("data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0xMiAwYy02LjYxNyAwLTEyIDUuMzgzLTEyIDEyczUuMzgzIDEyIDEyIDEyIDEyLTUuMzgzIDEyLTEyLTUuMzgzLTEyLTEyLTEyem02Ljk4OSAxMC4wNDQtMS4wODcgNi4zMzNjLS4wNjIuMzYtLjM3NC42MjMtLjczOS42MjNoLTEwLjMyNmMtLjM2NSAwLS42NzctLjI2My0uNzM5LS42MjNsLTEuMDg3LTYuMzMzYy0uMDQ4LS4yNzcuMDY0LS41NTguMjg5LS43MjcuMjI2LS4xNy41MjUtLjE5Ny43NzktLjA3NGwyLjg5NCAxLjQwOSAyLjM3Mi00LjI2N2MuMjY0LS40NzcgMS4wNDctLjQ3NyAxLjMxMSAwbDIuMzcyIDQuMjY3IDIuODk0LTEuNDA5Yy4yNTMtLjEyMy41NTMtLjA5Ni43NzkuMDc0LjIyNC4xNjkuMzM2LjQ1LjI4OC43Mjd6IiBmaWxsPSIjZmY5MzRkIi8+PC9zdmc+")
     &__footer
-        padding: 0 15px 15px 
+        padding: 0 15px 15px
         a
             width: 100%
             text-align: center
@@ -174,7 +174,7 @@ label
     background: #fff
     width: 100%
     box-shadow: 0px 0px 5px 0px rgb(218, 218, 218)
-    
+
     &__button
         position: relative
         display: none
@@ -226,12 +226,12 @@ label
             align-items: center
             margin: 0 0 0 auto
             padding: 0
- 
+
             li
                 height: 100%
                 line-height: normal
                 padding: 0 20px
-                    
+
             a
                 display: flex
                 height: 100%
@@ -252,7 +252,7 @@ label
 
 .padding
     padding: 15px
-    
+
 .section
     position: relative
     height: auto
@@ -292,7 +292,7 @@ h1
     width: 100%
     justify-content: center
     bottom: -20px
-    
+
     &__button
         border: 1px solid $color-stack
         padding: 10px
@@ -307,7 +307,7 @@ h1
         &:hover
             background: rgba(139, 195, 74, 0.38)
 
-.info 
+.info
     position: relative
     width: 18px
     height: 18px
@@ -338,7 +338,7 @@ h1
     &::after, &::before
         content: ''
         position: absolute
-        left: 20px 
+        left: 20px
         border: 5px solid transparent
     &::after
         z-index: 1
@@ -357,7 +357,7 @@ h1
             border-bottom: 5px solid rgba(160, 160, 160,.2)
             border-left: 5px solid rgba(160, 160, 160,.2)
             bottom: -5px
-    
+
     &.bottom
         border-top: 2px solid $color-stack
         &::before, &::after
@@ -371,7 +371,7 @@ h1
             border-top: 5px solid rgba(160, 160, 160,.2)
             border-left: 5px solid rgba(160, 160, 160,.2)
             top: -6px
-                   
+
     &.active
         display: block
 
@@ -381,13 +381,13 @@ h1
 .calc
 
     &__content
-        
+
         .calc__box
             margin-top: 15px
             border-radius: 2px
             background: #fff
             &:first-of-type
-                margin-top: 0 
+                margin-top: 0
                 border-radius: 0px 0 2px 2px
                 padding-top: 1px
             &-title
@@ -416,7 +416,7 @@ h1
                 align-items: center
                 margin-top: 15px
                 &:first-of-type
-                    margin-top: 0 
+                    margin-top: 0
 
                 &__block
                     top: 0
@@ -457,7 +457,7 @@ h1
                     color: #fff
 
         .calc-rooms
-            span 
+            span
                 margin-right: 15px
                 padding: 8px 15px
                 border-radius: 30px
@@ -479,7 +479,7 @@ h1
         font-weight: 600
         font-size: 16px
 
-    &__header 
+    &__header
         position: relative
         width: 100%
         display: flex
@@ -508,7 +508,7 @@ h1
         position: relative
         margin-top: 30px
         padding-bottom: 30px
-        
+
         & > div
             position: absolute
             color: #f35353
@@ -529,7 +529,37 @@ h1
         .rating__block
             border-bottom: 1px solid #e8e5e5
 
-        .sum 
+        .rating__danger
+            position: relative
+            cursor: pointer
+            &--disable .rating__danger-reason
+                max-height: 0
+                padding: 0 1rem
+                overflow: hidden
+                visibility: hidden
+        .rating__danger-icon
+            display: block
+            width: 1.4rem
+            height: 1.4rem
+            background: url("/static/images/exclamation.svg") center center / cover no-repeat
+        .rating__danger-reason
+            position: absolute
+            right: 1.7rem
+            top: 0
+            width: 250px
+            padding: 1rem
+            font-size: .875rem
+            line-height: 1.25rem
+            background-color: white
+            box-shadow: 1px 1px 6px #4e4e4e
+            transition: .25s all
+            transform: translateY(-50%)
+            a
+                text-decoration: underline
+            *
+                color: inherit
+                display: inline-block
+        .sum
             background: #fbfbfb
 
         .estimate
@@ -538,7 +568,7 @@ h1
             &:last-of-type
                 border: 0
             &.active
-                .estimate__list 
+                .estimate__list
                     display: block
             &__list
                 display: none
@@ -564,7 +594,7 @@ h1
 
                         span:first-of-type
                             width: 35%
-                        span 
+                        span
                             width: 20%
                             margin-left: 15px
                     > .sub
@@ -609,7 +639,7 @@ h1
                     &__title
                         display: block
 
-                svg 
+                svg
                     transform: rotate(-90deg)
 
             .estimate-header
@@ -651,15 +681,15 @@ h1
 
     & > a
         background: #ffffff
-        border-radius: 2px 
+        border-radius: 2px
         padding: 5px
         margin-right:5px
         width: 32px
 
         &:last-of-type
-           margin-right:5px 
-    
-    &__next, 
+           margin-right:5px
+
+    &__next,
     &__back,
     &__start,
     &__end
@@ -667,18 +697,18 @@ h1
         justify-content: center
         align-items: center
 
-    &__next::before, 
+    &__next::before,
     &__back::before
         display: block
         content: ''
         width: 18px
         height: 18px
         background: url-img('next.svg')
-    
+
     &__back::before
         transform: rotate(180deg)
 
-    &__end::before, 
+    &__end::before,
     &__start::before
         display: block
         content: ''
@@ -744,7 +774,7 @@ footer
             list-style: none
             margin: 0
             padding: 0
-            
+
             a
                 color: $color-stack
                 margin-right: 32px
@@ -755,7 +785,7 @@ footer
             margin-top: 15px
             font-size: 14px
             color: $silver-color
-            
+
 .wrap
     position: relative
     display: flex
@@ -764,14 +794,14 @@ footer
     align-items: flex-start
     margin-bottom: 20px
     &:last-of-type
-        margin-bottom:0px 
+        margin-bottom:0px
 
     [class^='wd-']
         position: relative
         margin-right: 15px
         &:last-child
-            margin-right: 0 
-    
+            margin-right: 0
+
     $width: 0
     @for $i from 1 through 12
         $width: $width+8.33333
@@ -793,7 +823,7 @@ footer
         font-size: 16px
         margin: 0px
         color: $silver-color
-    
+
     [class^="boxes__img-"]
         border-radius: 6px
         padding: 6px
@@ -814,14 +844,14 @@ footer
     &__content
         padding: 0 20px 20px
 
-        .wrap 
+        .wrap
             padding: 0
             margin: 0
-    
+
     &__footer
         display: flex
         align-items: center
-        padding: 0px 20px 20px 
+        padding: 0px 20px 20px
 
     .left-menu
         padding: 10px 0px
@@ -848,7 +878,7 @@ footer
 
 .two-peaple, .two-cloud
     display: block
-    height: 300px 
+    height: 300px
     width: 300px
 
 .two-peaple
@@ -890,9 +920,9 @@ footer
     display: flex
 
     & > div
-        margin-right: 20px 
+        margin-right: 20px
         &:last-child
-            margin-right: 0 
+            margin-right: 0
 
 .col-2 > div
     width: 50%
@@ -908,13 +938,13 @@ footer
         list-style: none
         margin: 15px 0px
         padding-left: 15px
-    
+
         li
             margin-bottom: 5px
             display: flex
-            
+
             &:last-child
-                margin-bottom: 0px 
+                margin-bottom: 0px
             &::before
                 content: ''
                 margin-top: 10px
@@ -994,7 +1024,7 @@ footer
 
             .star-rating
                 margin-left: 8px
-    
+
     &__sand
         margin: 0 0 0 auto
 
@@ -1002,7 +1032,7 @@ footer
         margin: 0 0 0 auto
         color: $silver-color
         text-align: center
-        cursor: pointer        
+        cursor: pointer
         span
             color: #000
             display: block
@@ -1010,7 +1040,7 @@ footer
             &:first-of-type
                 font-weight: 600
                 font-size: 16px
-            i 
+            i
                 color: $silver-color
                 font-style: normal
             strong
@@ -1020,11 +1050,11 @@ footer
     &-price
         padding: 0
 
-        .estimate-header svg 
+        .estimate-header svg
             margin-left: auto
 
         .rating__block
-            border-bottom: 1px solid #e8e5e5    
+            border-bottom: 1px solid #e8e5e5
 
     &-price:first-of-type
         .estimate:not(.active)
@@ -1035,7 +1065,7 @@ footer
                 background: #91c653
                 color: #fff
                 svg path
-                    fill: #fff 
+                    fill: #fff
             .estimate__list
                 display: block
                 height: 184px
@@ -1071,7 +1101,7 @@ footer
 
                         span:first-of-type
                             width: 35%
-                        span 
+                        span
                             width: 20%
                             margin-left: 15px
                     > .sub
@@ -1107,7 +1137,7 @@ footer
                     width: 18px
                     height: 18px
                     transform: rotate(90deg)
-        
+
             &__footer
                 align-items: center
                 display: none
@@ -1125,7 +1155,7 @@ footer
                     &__title
                         display: block
 
-                svg 
+                svg
                     transform: rotate(-90deg)
 
                 .estimate__footer
@@ -1146,14 +1176,14 @@ footer
                     display: none
 
     &__count
-        margin: 0 auto 
+        margin: 0 auto
 
         a
             display: flex
             font-weight: 600
             color: $color-stack
 
-            span 
+            span
                 font-weight: normal
                 color: $silver-color
                 margin-left: 5px
@@ -1178,11 +1208,11 @@ footer
                 display: none
                 width: 24px
                 height: 24px
-                border-radius: 12px 
+                border-radius: 12px
                 background: $color-stack
                 z-index: 1
                 top: 50%
-    
+
                 svg
                     position: absolute
                     transform: translate(-50%, -50%)
@@ -1190,7 +1220,7 @@ footer
                     height: 12px
                     top: 50%
                     left: 50%
-    
+
 
             & > .edit__controll-back
                 left: 10px
@@ -1205,7 +1235,7 @@ footer
                 display: flex
                 height: 100%
                 left: 0
-                
+
         & > .edit > div > span
             position: relative
             display: flex
@@ -1237,7 +1267,7 @@ footer
                     width: 8px
                     height: 8px
                     opacity: 0.5
-   
+
         & > .edit > div > span.active:nth-child(1)::before
             content: ''
             position: absolute
@@ -1250,7 +1280,7 @@ footer
             border-color: #8BC34A
             background: #fff
             color: #000
-        
+
         .add
             display: flex
             top: 0
@@ -1315,7 +1345,7 @@ footer
             &.inactive, &.inactive:hover
                 background: #b7b7b7
                 color: #797979
-        
+
 .button__blue
     background: #79b8ff
     &:hover
@@ -1326,7 +1356,7 @@ footer
     padding: 0 20px 20px 20px
     justify-content: center
     flex-wrap: wrap
- 
+
     span
         border: 1px solid transparent
         position: relative
@@ -1340,7 +1370,7 @@ footer
 
         &:hover
             border-color: #dddddd
-        
+
         i
             width: 40px
             height: 40px
@@ -1362,7 +1392,7 @@ footer
         background: rgba(139,195,74,0.38)
         cursor: pointer
         color: rgb(105, 175, 37)
-    
+
     &.red
         color: #ff6464
         border-color: #ff6464
@@ -1440,14 +1470,14 @@ footer
         img
             max-width: 60px
             max-height: 60px
-        
+
         .item
             margin-left: 20px
 
             > span
                 color: #69af25
                 font-size: 18px
-            
+
             .star-rating
                 margin-top: 8px
     &__body
@@ -1473,20 +1503,20 @@ footer
 .company-infobox
     p
         margin-bottom: 10px
-        
+
         a
             color: #2f92ff
     & > div
         display: flex
         margin-bottom: 10px
-        
+
         strong
             width: 30%
             margin-right: 5px
 
 #animatedModal, #applicationModal, #calcWindow
     opacity: 0
-    
+
 .modal-content
     max-width: 700px
     background: #fff
@@ -1500,7 +1530,7 @@ footer
     .modal-header
         display: flex
         padding: 20px
-        
+
         .title
             font-size: 18px
             font-weight: 600
@@ -1528,7 +1558,7 @@ footer
             display: block
             max-width: 400px
 
-        form > span 
+        form > span
             display: block
             max-width: 400px
             margin: 0px auto
@@ -1557,7 +1587,7 @@ footer
         display: block
         width: 100%
         height: 400px
-    
+
     .modal
         &-content
             background: transparent
@@ -1574,10 +1604,10 @@ footer
                 height: 60px
                 width: 60px
                 top: 50%
-                left: 50% 
+                left: 50%
                 transform: translate(-50%, -50%)
 
-                &__container 
+                &__container
                     > div
                         width: 50px
                         height: 50px
@@ -1585,14 +1615,14 @@ footer
                         left: 5px
                         border-width: 5px
 
-                    & > div:nth-child(2), 
+                    & > div:nth-child(2),
                     & > div:nth-child(4)
                         width: 38px
                         height: 38px
                         top: 11px
                         left: 11px
 
-                    & > div:nth-child(3) div:before, 
+                    & > div:nth-child(3) div:before,
                     & > div:nth-child(3) div:after
                         width: 5px
                         height: 5px
@@ -1605,7 +1635,7 @@ footer
                         top: 18px
                         box-shadow: 45px 0 0 0 #8bc34a
 
-                    & > div:nth-child(4) div:before, 
+                    & > div:nth-child(4) div:before,
                     & > div:nth-child(4) div:after
                         width: 5px
                         height: 5px
@@ -1655,7 +1685,7 @@ footer
                     display: block
                     color: #69af25
                     font-size: 18px
-                > div 
+                > div
                     display: flex
                     align-items: center
                     margin-top: 5px
@@ -1663,20 +1693,20 @@ footer
                 .star-rating
                     margin-left: 8px
 
-.prof 
+.prof
     &.rating
         margin-top: 10px
 .review
     &__footer
-        span 
+        span
             color: rgba(0, 0, 0, 0.54)
         a
             margin-left: 15px
         a:first-of-type
             margin: 0 0 0 auto
-    
+
     &__header
-        i 
+        i
             width: 21px
             height: 20px
             display: block
@@ -1690,8 +1720,8 @@ footer
             background: url-img("yandex.svg") no-repeat
 
         .star-rating
-            margin: 0 0 0 auto 
-.open-full 
+            margin: 0 0 0 auto
+.open-full
     margin-top: 5px
     color: #567cc1
     cursor: pointer
@@ -1700,8 +1730,8 @@ footer
 
 .g-recaptcha
     > div
-        margin: 25px auto  
-.video 
+        margin: 25px auto
+.video
     margin-bottom: 50px
 
     &__header
@@ -1713,7 +1743,7 @@ footer
             max-height: 55px
             align-items: center
 
-        & > div 
+        & > div
             margin-left: 20px
 
             > a
@@ -1743,7 +1773,7 @@ footer
             border-radius: 5px
             width: 290px
 
-            &:hover > span 
+            &:hover > span
                 text-decoration: underline
             img
                 width: 100%
@@ -1755,7 +1785,7 @@ footer
                 display: block
                 padding: 10px 15px
                 font-size: 14px
-        
+
         .slick-slide .boxes
             width: auto
 
@@ -1771,15 +1801,15 @@ footer
             .slick-slide
                 height: inherit
 
-                > div 
+                > div
                     height: 100%
 
 
 @keyframes loader
-    0%  
-        transform: rotate(0) 
-    100% 
-        transform: rotate(360deg) 
+    0%
+        transform: rotate(0)
+    100%
+        transform: rotate(360deg)
 
 .loading-spinner
     width: 100px
@@ -1789,7 +1819,7 @@ footer
 
     box-sizing: content-box
 
-    &__container 
+    &__container
         width: 100%
         height: 100%
         position: relative
@@ -1800,7 +1830,7 @@ footer
         div
             box-sizing: border-box!important
 
-        > div 
+        > div
             position: absolute
             width: 90px
             height: 90px
@@ -1812,7 +1842,7 @@ footer
             animation: loader 3.3333333333333335s linear infinite
 
 
-        & > div:nth-child(2), 
+        & > div:nth-child(2),
         & > div:nth-child(4)
             width: 68px
             height: 68px
@@ -1825,15 +1855,15 @@ footer
 
         > div:nth-child(3)
             border-color: transparent
-        
+
         > div:nth-child(3) div
             position: absolute
             width: 100%
             height: 100%
             transform: rotate(45deg)
 
-        & > div:nth-child(3) div:before, 
-        & > div:nth-child(3) div:after 
+        & > div:nth-child(3) div:before,
+        & > div:nth-child(3) div:after
             content: ""
             display: block
             position: absolute
@@ -1845,12 +1875,12 @@ footer
             border-radius: 50%
             box-shadow: 0 80px 0 0 #8bc34a
 
-        > div:nth-child(3) div:after 
+        > div:nth-child(3) div:after
             left: -10px
             top: 30px
             box-shadow: 80px 0 0 0 #8bc34a
 
-        > div:nth-child(4) 
+        > div:nth-child(4)
             border-color: transparent
 
         > div:nth-child(4) div
@@ -1859,8 +1889,8 @@ footer
             height: 100%
             transform: rotate(45deg)
 
-        & > div:nth-child(4) div:before, 
-        & > div:nth-child(4) div:after 
+        & > div:nth-child(4) div:before,
+        & > div:nth-child(4) div:after
             content: ""
             display: block
             position: absolute
@@ -1888,7 +1918,7 @@ footer
             &__name
                 width: 60% !important
 
-    
+
 .error404
     margin: 60px 0
     text-align: center
@@ -1912,5 +1942,5 @@ footer
 
 /* Include of table version */
 @import table
-    
+
 

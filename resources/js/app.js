@@ -19,7 +19,7 @@ var typeRem;
 var countTabs = 0;
 
 /** Окно видео */
-const modalVideo = () => 
+const modalVideo = () =>
 {
   $('.video__col').animatedModal({
     modalTarget: 'videoModal',
@@ -27,7 +27,7 @@ const modalVideo = () =>
     animatedOut: 'fadeOutUp',
     animationDuration: ".3s",
     color: "rgba(0, 0, 0, .3)",
-    afterOpen: () => { 
+    afterOpen: () => {
       let $this = $("#videoModal");
       let id = $this.attr('data-id');
 
@@ -36,7 +36,7 @@ const modalVideo = () =>
         data: {id: id},
         cache: false,
         url: '/ajax/getVideo',
-        success: (e) => func.getModalVideo(e) 
+        success: (e) => func.getModalVideo(e)
       });
     },
     afterClose: () => {
@@ -48,7 +48,7 @@ const modalVideo = () =>
   });
 }
 
-const checkTabs = () => 
+const checkTabs = () =>
 {
   let tabs          = tabsBlock.find('.tabs'),
       button        = footer.find("button.button__green");
@@ -68,15 +68,15 @@ const checkTabs = () =>
 
 /**
  * Переключение вкладок
- *  
- * @param {*} e 
+ *
+ * @param {*} e
  */
-const triggerTabs = e => 
+const triggerTabs = e =>
 {
   let tabs = e.data("tabs");  // Получаем id текущей вкладки
 
   if ( !e.hasClass('active') )
-    tabsBlock.find(".tabs").removeClass("active"); 
+    tabsBlock.find(".tabs").removeClass("active");
 
   e.addClass("active");
 
@@ -87,27 +87,27 @@ const triggerTabs = e =>
 
 /**
  * Добавляем карточки
- * 
- * @param {*} col 
- * @param {*} e 
+ *
+ * @param {*} col
+ * @param {*} e
  */
-const AddSnippets = (col, e) => 
+const AddSnippets = (col, e) =>
 {
   let el      = Tabs.tabs[e],
       id      = col+1,
       parent  = $(`<div data-card="${id}" class="calc__content"></div>`),
       concat  = typeRem == 0 ? Tabs.new : Tabs.old,
       element = el['blocks'].concat(concat[e]['blocks']);
-      
+
   for (let i=0; i <= element.length; i++) {
     let obj     = element[i],
-        blocks  = $(`<div class="calc-block"></div>`);  
+        blocks  = $(`<div class="calc-block"></div>`);
 
     parent.append(blocks);
-    
+
     /* Получаем пункты блоков */
     $.map(obj, (val, i) => {
-        let cont    = $(`<div class="wd-6 mwd-12"></div>`), 
+        let cont    = $(`<div class="wd-6 mwd-12"></div>`),
             get;
 
       /* Добавляем отступ снизу для чекбокса */
@@ -122,7 +122,7 @@ const AddSnippets = (col, e) =>
 
       /* Отрисовываем элементы */
       switch (val['type']) {
-                  
+
         // Выводим input
         case "input":
           let value = val['val'] != undefined ? `value="${val['val']}"` : '';
@@ -131,7 +131,7 @@ const AddSnippets = (col, e) =>
                       <span>${val['value']}</span>
                   </label>`;
           break;
-                  
+
         // Выбпадающие списки(select)
         case "select":
           let select = $(`<select name="${el['name']}[${id}][${val['name']}]" data-placeholder="Сделайте выбор">
@@ -177,30 +177,30 @@ const AddSnippets = (col, e) =>
 /**
  * Манипуляция контроллерами
  */
-const controller = () => 
+const controller = () =>
 {
   let position  = tabsBlock.position(),
       scroll    = $(".edit").width() - tabsBlock.width(),
       dist      = 70,
       left      = position.left,
       next, back;
-  
+
       /**
    * Если вкладки вылезают за приделы блока и кнопки дальше нет на странице то активируем её.
    * Если промотано до конца то скрываем некст.
    */
   if ( tabsBlock.width() > $(".edit").width() && $('.edit__controll-next').is(':hidden')) {
     next = "block";
-  } else 
+  } else
   if( scroll > left - dist*2 ) {
     next = "none";
-  } 
+  }
 
   $('.edit__controll-next').css({display: next});
 
   if ( tabsBlock.width() > $(".edit").width() && left+dist < 0)
     back = "block";
-  else 
+  else
     back = "none";
 
   $('.edit__controll-back').css({display: back});
@@ -208,10 +208,10 @@ const controller = () =>
 
 /**
  * Создание вкладок
- * 
- * @param {*} e 
+ *
+ * @param {*} e
  */
-const AddTabs = (e) => 
+const AddTabs = (e) =>
 {
   let col = 1, elem;
 
@@ -222,8 +222,8 @@ const AddTabs = (e) =>
 
       if (data>col) col = data;
     });
-  
-  countTabs++; 
+
+  countTabs++;
   checkTabs();            // Вызываем проверку вкладок
 
   elem = $(`<span class="tabs" data-tabs="${col+1}">${Tabs.tabs[e]['title']}
@@ -239,11 +239,11 @@ const AddTabs = (e) =>
 
 /**
  * Вывод ошибок
- * 
- * @param {*} text 
- * @param {*} type 
+ *
+ * @param {*} text
+ * @param {*} type
  */
-const error  = (text, type = 'open') => 
+const error  = (text, type = 'open') =>
 {
   let block = footer.find('.error');
 
@@ -252,7 +252,7 @@ const error  = (text, type = 'open') =>
     return;
   }
 
-  if ( !block.length ) { 
+  if ( !block.length ) {
     footer.prepend(`<div class="error">${text}</div>`);
   } else {
     block.text(text);
@@ -297,7 +297,7 @@ $(document).ready(function() {
 
   // Добавляем ID в окно с видео
   $(document).on('click', '.video__col', function(){
-    let $this = $(this); 
+    let $this = $(this);
     let id = $this.data('id');
 
     $("#videoModal").attr('data-id', id);
@@ -313,7 +313,7 @@ $(document).ready(function() {
   $('.calc-trigger span, .calc-rooms span').on("click", function() {
     let $this = $(this),
         span = $this.parent();
-    
+
     if($this.hasClass('active')) {
       span.children("input").val('');
     } else {
@@ -332,7 +332,7 @@ $(document).ready(function() {
   $('.nextCard__button').on(`click`, function(e) {
       e.preventDefault();
       let positionElement = $($.attr(this, `href`)).offset().top;
-    
+
       $(`body, html`).stop().animate({
           scrollTop: positionElement-60
       },600);
@@ -381,13 +381,13 @@ $(document).ready(function() {
       settings: {
         slidesToShow: 3,
       }
-    }, { 
+    }, {
       breakpoint: 750,
       settings: {
         slidesToShow: 2,
         swipe: true,
       }
-    }, { 
+    }, {
       breakpoint: 580,
       settings: {
         swipe: true,
@@ -395,7 +395,7 @@ $(document).ready(function() {
       }
     }]
   });
- 
+
   // Обновляем селекты в легком калькуляторе в зависимости от типа помещения
   $('#calc-lite [name="type"]').on('change', function() {
     let val     = $(this).val();
@@ -421,10 +421,13 @@ $(document).ready(function() {
         check = $this.findError({parent: 'label, .styler'});
 
     if( !check ) return false;
-    
-    $.post("/ajax/lite", $this.serialize(), func.getCalculatorRating);
+
+    $.post("/ajax/lite", $this.serialize(), (items) => {
+        func.getCalculatorRating(items);
+        func.dangerItemsToggling();
+    });
   });
-  
+
   // Иницаализируем селекты с задержкой для правильно отображение шрифтов
   setTimeout( () => $("select").styler(), 1);
 
@@ -442,8 +445,8 @@ $(document).ready(function() {
   $(".edit__controll-next").on("click", function(){
     let left = tabsBlock.position().left,
         scroll   = $(".edit").width() - tabsBlock.width(),
-        dist     = 70; 
-    
+        dist     = 70;
+
     if ( scroll > ( left - dist*2) )
       left = scroll - left+(left+dist);
 
@@ -462,11 +465,11 @@ $(document).ready(function() {
     tabsBlock.animate({"left": left + dist}, 300);
     controller();
   });
-    
+
   // Переключение вкладок
-  $(document).on("click", ".calc-prof__header .tabs", function() { 
+  $(document).on("click", ".calc-prof__header .tabs", function() {
     let $this = $(this);
-    !$this.hasClass("active") && triggerTabs($this) 
+    !$this.hasClass("active") && triggerTabs($this)
   });
 
   // Удаление вкладок
@@ -478,9 +481,9 @@ $(document).ready(function() {
 
     tabs.remove();
     content.find(`[data-card="${data}"]`).remove();
-    countTabs--; 
+    countTabs--;
     checkTabs(); // Вызываем проверку вкладок
-    
+
     !tabsBlock.find('.active').length && triggerTabs(tabsBlock.children().last());
   });
 
@@ -498,33 +501,36 @@ $(document).ready(function() {
     if (countTabs <= 0) return false; // Если веладок нет то отменяем событие
 
     if ( !$(this).findError({parent: 'label'}) ) return false;
-    
-    $.post('/ajax/score', $(this).serialize(), func.getCalculatorRating);
+
+    $.post('/ajax/score', $(this).serialize(), (items) => {
+        func.getCalculatorRating(items);
+        func.dangerItemsToggling();
+    });
   });
 
   // Отслеживаем изменение типа квартиры
   $('[name="all[type]"]').on('change', function() {
 
     error(false, 'close')
-    typeRem = $(this).val();  
+    typeRem = $(this).val();
 
     let tabs = $('.edit > div').find('span');
 
-    $.map(tabs, e => { 
+    $.map(tabs, e => {
       let data = $(e).data("tabs");
       $(e).remove();
       content.find(`[data-card="${data}"]`).remove();
     });
     $('.prof.rating').html('');
-    countTabs=0; 
+    countTabs=0;
     checkTabs();
   });
-    
+
   // Не даем создать вкладку пока не выбран тип помещения
   $('.add__button').on('click', e => {
     e.preventDefault();
 
-    if ( $('.calc-prof [name="all[type]"]').val() == '') 
+    if ( $('.calc-prof [name="all[type]"]').val() == '')
       return error('Выберете тип помощения.');
 
     modal.trigger('click')
@@ -547,17 +553,17 @@ $(document).ready(function() {
     }
   });
 
-  $('.open-full').on('click', function() { 
+  $('.open-full').on('click', function() {
     let $this       = $(this),
         fullElement = $this.closest('[data-text]'),
         text        = fullElement.data('text');
-    
+
     fullElement.find('.text-review').html(text);
     $this.remove();
   });
 
   // Открытие прайс листа по клику на цену
-  $('.rating .rating__price').on('click', function() { 
+  $('.rating .rating__price').on('click', function() {
     let el = $(this)
       .closest('.rating-price')
       .find('.estimate__price');
@@ -566,22 +572,22 @@ $(document).ready(function() {
   });
 
   // Отправляем заявку
-  $('#send-application').on('submit', function(e) { 
+  $('#send-application').on('submit', function(e) {
     e.preventDefault();
 
     let $this = $(this);
     let data  = $this.serialize();
 
     $.post('/ajax/sendApplication', data)
-      .then((e) => { 
+      .then((e) => {
         let notif =  $this.find('.window-notif');
 
         if ( e.status == 'ok') {
           $this.find('input[type="text"]').val("");
           grecaptcha.reset();
-          
+
           notif.addClass('success').text('Заявка отправлена успешно!');
-        } else { 
+        } else {
           notif.addClass('error').text(e.message);
           grecaptcha.reset();
         }
@@ -590,16 +596,16 @@ $(document).ready(function() {
       });
   });
 
-  const tooltip = { 
-    open: function () { 
+  const tooltip = {
+    open: function () {
 
     },
-    close: function () { 
+    close: function () {
 
     }
   }
 
-  $('.info-conteiner').tooltip({ 
+  $('.info-conteiner').tooltip({
     distance: 75
   });
 });
@@ -608,10 +614,10 @@ $(document).ready(function() {
  * После выполнения сериптов убераем колесико загрузки.
  * И повторно инициалезируем плагины модальных окон.
  */
-window.onload = () => { 
+window.onload = () => {
   let load = document.getElementsByClassName('load');
-  
-  if (load.length) 
+
+  if (load.length)
     load[0].style.display = 'none';
 
   modalVideo();

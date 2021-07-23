@@ -6,10 +6,10 @@
 
     h1
         font-size: 28px
-    
+
     .header
         .menu
-            top: 0 
+            top: 0
             bottom: 0
             position: fixed !important
             display: block !important
@@ -17,8 +17,8 @@
             right: -100% !important
             background: #ffffff
             border-left: 1px solid #e0e0e0
-            
-            li,a 
+
+            li,a
                 justify-content: center
                 height: auto !important
             li
@@ -54,14 +54,14 @@
                     position: relative
                     width: 20px
                     height: 20px
-                    
+
                     &::after
                         @include menu-liner(top, 50%)
                         transform: rotate(45deg)
                     &::before
                         @include menu-liner(top, 50%)
                         transform: rotate(-45deg)
-        
+
         &__button
             display: flex
     .wrap
@@ -71,7 +71,7 @@
         @for $i from 1 through 12
             $width: $width+8.33333
             .mwd-#{$i}
-                width: $width+unquote("%") 
+                width: $width+unquote("%")
 
     .company-info
         &__body
@@ -113,13 +113,13 @@
     .four-rating
         &__block
             display: block
-        
+
         &__name
             width: 73%
 
         &__img, &__name
             display: inline-block
-        
+
         &__sand
             text-align: center
             margin: 20px 0 0 0
@@ -134,13 +134,13 @@
                 justify-content: center
                 background: #8BC34A
                 color: #fff
-            
+
         &__img
-            width: 30%
+            width: 27%
             margin: 0
-            
+
         &__name
-            width: 70%
+            width: 63%
 
         &__count
             margin: 15px auto 0
@@ -150,7 +150,7 @@
             width: 100%
             margin-top: 15px
 
-            span 
+            span
                 text-align: left
                 &:first-of-type
                     width: 50%
@@ -169,8 +169,8 @@
                             &::before
                                 content: 'Ед. изм.'
                                 font-size: 14px
-                            
-                &__item 
+
+                &__item
                     & > div span
                         &:first-of-type
                             margin-left: 0px
@@ -178,7 +178,7 @@
                             width: 10%
                         &:last-of-type
                             width: 25%
-        
+
         .estimate
             &-header
                 span
@@ -186,7 +186,7 @@
                         width: 45%
                     &:nth-child(3)
                         width: 27%
-            i 
+            i
                 text-align: right
 
             &.active
@@ -199,7 +199,7 @@
                             &::before
                                 content: 'Ед. изм.'
                                 font-size: 14px
-        
+
         &-price .estimate:not(.active)
             .estimate__list
                 height: 231px !important
@@ -224,10 +224,10 @@
 
         &-block > div
             margin-top: 15px
-        
+
         &-block:first-child > div:first-child
             margin-top: 0px
-            
+
         &__header, &-block
             position: relative !important
             display: block !important
@@ -272,8 +272,8 @@
                 margin: 20px 20px 0
                 .checkbox
                     margin-bottom: 10px
-            
-            .calc-trigger 
+
+            .calc-trigger
                 width: 100%
 
                 > span
@@ -283,7 +283,7 @@
             font-size: 16px
         &__rating
             .estimate
-                &__item 
+                &__item
                     & > div span
                         &:first-of-type
                             margin-left: 0px
@@ -297,7 +297,7 @@
 
             &:first-child
                 margin-top: 0px
-    
+
     .calc-prof
         margin-bottom: 15px
         &__header
@@ -313,7 +313,7 @@
                     background: $color-stack
                     width: 100%
                     border-radius: 3px
-                    span 
+                    span
                         color: #fff
 
                 &:hover .add__img
@@ -331,7 +331,7 @@
                     border-radius: 3px
                     overflow: hidden
 
-                    span 
+                    span
                         border: 0
                         width: 100%
                         background: #fff
@@ -348,8 +348,8 @@
 
         &__content
             padding-top: 20px
-            border-radius: 2px 2px 0 0 
-        
+            border-radius: 2px 2px 0 0
+
         &__footer
             padding: 15px 0
             border-radius: 0 0 2px 2px
@@ -360,14 +360,14 @@
                 justify-content: center
                 padding: 5px
 
-    .slick-slide 
+    .slick-slide
         img
             margin: 0 auto
 
     .slick-slider
         .slick-track
             margin-bottom: 15px
-            
+
     .modal-content
         top: 0
         left: 0
@@ -377,19 +377,19 @@
         transform: none
         margin: 10px
 
-        .add-tabs 
+        .add-tabs
             span
                 border: 0
                 text-align: center
                 width: 50%
                 margin: 0 0 15px
 
-    .input 
+    .input
         width: 100%
 
     .video
         &__container
-            .boxes 
+            .boxes
                 img
                     max-width: 350px
     #videoModal
@@ -402,7 +402,7 @@
         &__container
             margin: 0
 
-            .boxes 
+            .boxes
                 img
                     max-width: inherit
                     width: 100%
@@ -412,3 +412,14 @@
         .modal-content
             top: 15px
             transform: translateX(-50%)
+
+@media screen and (min-width: 749px)
+    .rating__danger
+        margin-left: 1.5rem
+    .rating__danger-reason
+        right: unset
+        left: 1.7rem
+
+@media screen and (min-width: 879px)
+    .rating__danger
+        margin-left: .5rem

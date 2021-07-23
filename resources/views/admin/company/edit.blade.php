@@ -148,19 +148,17 @@
             <div class="row padding">
                 <div class="col-12">
                     <div class="input__title">Уровень небезопасности компании (чем больше, тем опаснее)</div>
-                    <label for="dangerous_level" class="input">
-                        <input type="text" id="dangerous_level" name="dangerous_level" placeholder="Целое число"
-                               value="{{ old('dangerous_level', $dangerous_level ?? '') }}" />
+                    <label for="danger_level" class="input">
+                        <input type="text" id="danger_level" name="danger_level" placeholder="Целое число"
+                               value="{{ old('danger_level', $danger_level ?? '') }}" />
                     </label>
                 </div>
             </div>
             <div class="row padding">
-                <div class="col-6">
-                    <div class="input__title">Причина небезопасности</div>
-                    <label for="dangerous_reason" class="input">
-                        <input type="text" id="dangerous_reason" name="dangerous_reason" placeholder="Поле будет показываться пользователю"
-                               value="{{ old('dangerous_reason', $dangerous_reason ?? '') }}" />
-                    </label>
+                <div class="col-12">
+                    <label class="input__title" for="danger_reason">Причина небезопасности</label>
+                        <textarea id="danger_reason" name="danger_reason" placeholder="Поле будет показываться пользователю" cols="30" rows="10"
+                        >{{ old('danger_reason', $danger_reason ?? '') }}</textarea>
                 </div>
             </div>
         </div>

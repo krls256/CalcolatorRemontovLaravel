@@ -171,8 +171,16 @@ const getCalculatorRating = data => {
 
     // Перебераем клмпании
     $.map(data, (e) => {
-        const {details, img, name, url, price, id} = e;
-
+        const {details, img, name, url, price, id, danger_level, danger_reason} = e;
+        let dangerBlock = ''
+        if(danger_level > 0 && danger_reason) {
+            dangerBlock = (`
+                <div class="rating__danger rating__danger--disable">
+                    <i class="rating__danger-icon"></i>
+                    <div class="rating__danger-reason">${danger_reason}</div>
+                </div>
+            `)
+        }
         let block = $(`<div class="module calc__rating">
                     <div class="rating__block">
                       <div class="rating__img"><img src="${img}" alt="${name}"></div>
@@ -180,6 +188,7 @@ const getCalculatorRating = data => {
                         <a href="/rating/${url}/" target="_blank">${name}</a>
                         <div class="rating__price">Цена:&nbsp;<span>${price}</span>&nbsp;руб.</div>
                       </div>
+                      ${dangerBlock}
                       <div class="rating__sand">
                         <a href="#animatedModal" class="link-button send-zamer" data-id="${id}">Оставить заявку</a>
                       </div>
@@ -224,6 +233,19 @@ const getCalculatorRating = data => {
     });
 }
 
+const dangerItemsToggling = () => {
+    const items = document.querySelectorAll('.rating__danger')
+    items.forEach((item) => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('rating__danger--disable')
+        })
+        const text = item.querySelector('.rating__danger-reason');
+        text.style.maxHeight = text.scrollHeight;
+        const links = item.querySelectorAll('a');
+        links.forEach(link => link.addEventListener('click', (e) => e.stopPropagation()))
+    })
+}
+
 export default {
     total,
     mobileMenu,
@@ -231,5 +253,6 @@ export default {
     getModalVideo,
     visablePrice,
     getCalculatorRating,
-    modalApplication
+    modalApplication,
+    dangerItemsToggling
 }

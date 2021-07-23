@@ -14,8 +14,8 @@ class DangerousCompanyMigration extends Migration
     public function up()
     {
         Schema::table('company', function (Blueprint $table) {
-            $table->integer('dangerous_level')->default(0);
-            $table->string('dangerous_reason', 255)->nullable();
+            $table->integer('danger_level')->default(0);
+            $table->text('danger_reason', 255)->nullable();
         });
     }
 

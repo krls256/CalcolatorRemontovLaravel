@@ -49,7 +49,7 @@ class CalculatorController extends Controller
             return $item['price'];
         })
             ->sortBy(function ($item) {
-                return $item['dangerous_level'];
+                return $item['danger_level'];
             })
             ->values();
     }

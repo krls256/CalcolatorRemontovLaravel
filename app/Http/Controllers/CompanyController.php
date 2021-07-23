@@ -153,8 +153,8 @@ class CompanyController extends Controller
             'redecorating'  => 'required',
             'overhaul'      => 'required',
             'turnkey_repair'=> 'required',
-            'dangerous_level' => 'required|integer',
-            'dangerous_reason' => 'nullable|string',
+            'danger_level' => 'required|integer',
+            'danger_reason' => 'nullable|string',
         ]);
 
         $save = array(
@@ -173,8 +173,8 @@ class CompanyController extends Controller
             'redecorating'  => $req->redecorating,
             'overhaul'      => $req->overhaul,
             'turnkey_repair'=> $req->turnkey_repair,
-            'dangerous_level' => $req->dangerous_level,
-            'dangerous_reason' => $req->dangerous_reason ? $req->dangerous_reason : null
+            'danger_level' => $req->danger_level,
+            'danger_reason' => $req->danger_reason ? $req->danger_reason : null
         );
 
         if ( $req->logo != '') {
@@ -299,8 +299,8 @@ class CompanyController extends Controller
                 'end'       => $page+3,
                 'pages'     =>$total/$this->reviewShow
             ],
-            'dangerous_level' => $row->dangerous_level,
-            'dangerous_reason' => $row->dangerous_reason,
+            'danger_level' => $row->danger_level,
+            'danger_reason' => $row->danger_reason,
         ];
     }
 

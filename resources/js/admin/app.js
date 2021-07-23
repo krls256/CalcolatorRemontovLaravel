@@ -8,28 +8,28 @@ import axios from 'axios'
 
 /**
  * Убераем все сообщения об ошибке
- * 
- * @param {*} e 
+ *
+ * @param {*} e
  */
-const errorClose = (e) => { 
+const errorClose = (e) => {
   $(e).find('.active').removeClass('active');
   $(e).find('.input').removeClass('error');
 }
 
 /**
  * Обрабатываем ответ при создании сметы
- * 
- * @param {*} data 
+ *
+ * @param {*} data
  */
 const addEstimate = ({ data }) => {
 
   if ( data.code == 'success') {
     window.location = '/admin/estimates';
-  } else 
+  } else
   if ( data.type == 'validation') {
     console.log(data.message);
   }
-} 
+}
 
 $(document).ready(function() {
 
@@ -54,27 +54,27 @@ $(document).ready(function() {
       .then(req => {
         let { data } = req;
 
-        if (data.status == 'ok') { 
+        if (data.status == 'ok') {
           window.location = '/admin';
-        } else 
+        } else
         if ( data.status == 'error' && data.type == 'auth') {
           error.text('Логин или пароль введены не верно!');
           error.addClass('active');
         } else
         if ( data.status == 'error' && data.type == 'validation') {
-          $.each(data.message, function (e) { 
+          $.each(data.message, function (e) {
             $('[for="' + e + '"]').addClass('error');
           });
-          
+
           error.text('Некоторые поля заполнены не коректно!');
           error.addClass('active');
         }
       });
-    
+
   });
 
   // Удаляем сообщения об ошибках при вводе.
-  $("#login-form input").on('input', function () { 
+  $("#login-form input").on('input', function () {
       errorClose("#login-form");
   });
 
@@ -94,6 +94,10 @@ $(document).ready(function() {
     svgPath: path.join(__dirname, 'static/images/icons.svg')
   });
 
+    $('#edit-company-form #danger_reason').trumbowyg({
+        svgPath: path.join(__dirname, 'static/images/icons.svg')
+    });
+
   // Добавляем компанию
   $('#add-company-form').on('submit', function(e) {
     e.preventDefault();
@@ -101,7 +105,7 @@ $(document).ready(function() {
     axios.post('/ajax/company/add', new FormData($(this)[0]))
       .then(req => {
         let { data } = req;
-        
+
         if ( data.status == 'ok') {
           window.location = '/admin/companies';
         }
@@ -115,13 +119,13 @@ $(document).ready(function() {
     axios.post('/ajax/company/edit', new FormData($(this)[0]))
       .then(req => {
         let { data } = req;
-        
+
         if ( data.status == 'ok') {
           window.location = '/admin/companies';
         }
       });
   });
-  
+
   // Создание пользователя
   $('#add-user-form').on('submit', function(e) {
     e.preventDefault();
@@ -129,7 +133,7 @@ $(document).ready(function() {
     axios.post('/ajax/users/add', $(this).serialize())
       .then(res => {
         let { data } = res;
-        
+
         if ( data.status == 'ok') {
           window.location = '/admin/users/'
         }
@@ -154,13 +158,13 @@ $(document).ready(function() {
           window.location = '/admin/estimates';
         }
       });
-  
+
   });
 
   /**
-   * Добавление прайса 
+   * Добавление прайса
    */
-  $(document).on('submit', '#edit-price-form', function(e) { 
+  $(document).on('submit', '#edit-price-form', function(e) {
     e.preventDefault();
 
     let $this = $(this);
@@ -170,8 +174,8 @@ $(document).ready(function() {
       type: 'POST',
       cache: false,
       data: data,
-      url: '/ajax/price/add', 
-      success: (e) => { 
+      url: '/ajax/price/add',
+      success: (e) => {
         if (e.code == 'ok') {
           let measure;
           let list = $this.closest('.content').find('#list');
@@ -201,7 +205,7 @@ $(document).ready(function() {
 
           if ( list.find('.notice').length > 0 )
             list.find('.notice').remove();
-      
+
           list.append(block);
 
           $this.find('input[type="text"]').val('');
@@ -213,14 +217,14 @@ $(document).ready(function() {
   $(document).on('click', '.price-list a', function(e) {
     e.preventDefault();
 
-    let $this = $(this); 
-    let url   = $this.attr('href'); 
+    let $this = $(this);
+    let url   = $this.attr('href');
     $.ajax({
       type: "POST",
       url: url,
       cache: false,
-      success: (e) => { 
-        if(e.code == 'ok') { 
+      success: (e) => {
+        if(e.code == 'ok') {
           $this.closest('.price-list').remove();
         }
       }
