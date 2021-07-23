@@ -4,8 +4,8 @@
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')" />
 
-    <link rel="preload" href="/static/css/main.css?v=1.0.1" as="style">
-    <link rel="preload" href="/static/js/main.js?v=1.0.1" as="script">
+    <link rel="preload" href="/static/css/main.css?v=1.0.2" as="style">
+    <link rel="preload" href="/static/js/main.js?v=1.0.2" as="script">
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Калькулятор ремонта квартир." />
@@ -20,7 +20,7 @@
 
     <meta name="yandex-verification" content="cce5fb41b8406d9b" />
 
-    <link rel="stylesheet" href="/static/css/main.css?v=1.0.1">
+    <link rel="stylesheet" href="/static/css/main.css?v=1.0.2">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -68,7 +68,7 @@
             }
         }
     </script>
-    <script src="/static/js/main.js?v=1.0.1"></script>
+    <script src="/static/js/main.js?v=1.0.2"></script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
     @if( Auth::check() )
