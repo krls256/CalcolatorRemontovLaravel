@@ -130,3 +130,7 @@ Route::prefix('ajax')
                 $route->post('price/add', [PriceListController::class, 'add']);
             });
     });
+
+    Route::get('test', function() {
+        dd(env("RECAPTCHA_V3_PUBLIC"));
+    });
