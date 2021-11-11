@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
+use App\Repositories\Application\CompanyApplicationRepository;
 use App\Http\Controllers\ParserController;
 use App\Mail\Application;
 use ReCaptcha\ReCaptcha;
@@ -53,7 +53,7 @@ class globalController extends Controller
     /**
      * Отправка заявки
      */
-    public function application(Request $req)
+    public function application(Request $req, CompanyApplicationRepository $applicationRepository)
     {
         $data       = $req->all();
         $ip         = $req->ip();
@@ -90,9 +90,12 @@ class globalController extends Controller
             ]);
         }
 
-        $email = env("APPLICATION_SEND_ON_MAIL");
-        Mail::to($email)
+        $email = $applicationRepository->getCompanyEmail($data['id']);
+        if($email) {
+            Mail::to($email)
             ->send(new Application($data));
+
+        }
 
         return  response()->json([
             "status"    => "ok",
