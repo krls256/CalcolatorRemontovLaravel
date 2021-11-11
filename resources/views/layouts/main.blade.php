@@ -4,8 +4,8 @@
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')" />
 
-    <link rel="preload" href="/static/css/main.css?v=1.0.2" as="style">
-    <link rel="preload" href="/static/js/main.js?v=1.0.2" as="script">
+    <link rel="preload" href="/static/css/main.css?v=1.0.3" as="style">
+    <link rel="preload" href="/static/js/main.js?v=1.0.3" as="script">
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Калькулятор ремонта квартир." />
@@ -20,7 +20,7 @@
 
     <meta name="yandex-verification" content="cce5fb41b8406d9b" />
 
-    <link rel="stylesheet" href="/static/css/main.css?v=1.0.2">
+    <link rel="stylesheet" href="/static/css/main.css?v=1.0.3">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -57,19 +57,9 @@
         </div>
     </footer>
     <div class="info-conteiner"></div>
-    <script>
-        function onloadCallback() {
-            var el = document.querySelector('.g-recaptcha');
+    <script src="/static/js/main.js?v=1.0.3"></script>
 
-            if(el) {
-                grecaptcha.render(el, {
-                    'sitekey' : '6LeuMrsZAAAAAAGLBV40YEPQNRGLqcHj5IK_2iET'
-                });
-            }
-        }
-    </script>
-    <script src="/static/js/main.js?v=1.0.2"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{env("RECAPTCHA_V3_PUBLIC")}}"></script>
 
     @if( Auth::check() )
         <script src="/static/js/admin.js"></script>

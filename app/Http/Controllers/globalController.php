@@ -57,7 +57,7 @@ class globalController extends Controller
     {
         $data       = $req->all();
         $ip         = $req->ip();
-        $recaptcha  = new ReCaptcha("6LeuMrsZAAAAAJbesO0raKc84v681yGb4Foh8w8i");
+        $recaptcha  = new ReCaptcha(env("RECAPTCHA_V3_PRIVATE"));
 
         $capthcaToken = Validator::make($data, ['g-recaptcha-response' => 'required']);
 
@@ -70,7 +70,7 @@ class globalController extends Controller
 
         $resp = $recaptcha->verify($data['g-recaptcha-response'], $ip);
 
-        if ( !$resp->isSuccess() ) {
+        if ( !$resp->isSuccess() || $resp->getScore() < env("RECAPTCHA_V3_ACCEPT_GATE")) {
             return response()->json([
                 "status"    => "error",
                 "message"   => "Капча введена неверно."
@@ -90,8 +90,8 @@ class globalController extends Controller
             ]);
         }
 
-        $email = DB::table('company')->where('id', $data['id'])->first();
-        Mail::to($email->email)
+        $email = env("APPLICATION_SEND_ON_MAIL");
+        Mail::to($email)
             ->send(new Application($data));
 
         return  response()->json([

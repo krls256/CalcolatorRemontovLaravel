@@ -230,7 +230,9 @@
             </div>
         </div>
         <div class="modal-layout">
-            <form id="send-application">
+
+            <form id="send-application" data-recaptcha-public="{{env("RECAPTCHA_V3_PUBLIC")}}">
+                <div class="window-notif my-2"></div>
                 <input type="hidden" name="id" />
                 <span>Ваше имя</span>
                 <label for="name" class="input">
@@ -240,9 +242,8 @@
                 <label for="phone" class="input">
                     <input type="text" name="phone" id="phone" />
                 </label>
-                <div class="window-notif"></div>
-                <div class="g-recaptcha"></div>
                 <button type="submit" class="link-button">Оставить заявку</button>
+
             </form>
         </div>
         </div>
