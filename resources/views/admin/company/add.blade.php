@@ -50,6 +50,13 @@
               <input type="text" id="address" name="address" placeholder="ул. Ленина, д. 1" />
             </label>
           </div>
+          <div class="col-6">
+            <div class="input__title">Email компании</div>
+            <label for="email" class="input">
+                <input type="text" id="email" name="email" placeholder="info@example.com"
+                       value="{{ $email ?? '' }}" />
+            </label>
+        </div>
         </div>
       </div>
       <div class="box">

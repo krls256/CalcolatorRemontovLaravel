@@ -54,6 +54,13 @@
                                value="{{ $address ?? '' }}" />
                     </label>
                 </div>
+                <div class="col-6">
+                    <div class="input__title">Email компании</div>
+                    <label for="email" class="input">
+                        <input type="text" id="email" name="email" placeholder="info@example.com"
+                               value="{{ $email ?? '' }}" />
+                    </label>
+                </div>
             </div>
             <div class="row padding">
                 <div class="col-6">
