@@ -131,6 +131,4 @@ Route::prefix('ajax')
             });
     });
 
-    Route::get('test', function() {
-        dd(env("RECAPTCHA_V3_PUBLIC"));
-    });
+    
