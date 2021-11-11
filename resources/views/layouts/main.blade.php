@@ -18,7 +18,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
 
-    <meta name="yandex-verification" content="cce5fb41b8406d9b" />
+    <meta name="yandex-verification" content="7ceb4083a568134c" />
 
     <link rel="stylesheet" href="/static/css/main.css?v=1.0.3">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -64,5 +64,19 @@
     @if( Auth::check() )
         <script src="/static/js/admin.js"></script>
     @endif
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(85542874, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/85542874" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </body>
 </html>
