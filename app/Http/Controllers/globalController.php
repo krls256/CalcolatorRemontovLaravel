@@ -60,7 +60,6 @@ class globalController extends Controller
         $recaptcha  = new ReCaptcha(env("RECAPTCHA_V3_PRIVATE"));
 
         $capthcaToken = Validator::make($data, ['g-recaptcha-response' => 'required']);
-
         if ( $capthcaToken->fails() ) {
             return response()->json([
                 "status"    => "error",

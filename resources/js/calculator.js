@@ -159,6 +159,12 @@ const modalApplication = () => {
                 .addClass('window-notif');
         }
     });
+    $('.send-zamer').on('click', function () {
+        let $this = $(this);
+        let id = $this.data('id');
+
+        $('#send-application [name="id"]').val(id);
+    });
 }
 
 /**

@@ -4,8 +4,8 @@
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')" />
 
-    <link rel="preload" href="/static/css/main.css?v=1.0.3" as="style">
-    <link rel="preload" href="/static/js/main.js?v=1.0.3" as="script">
+    <link rel="preload" href="/static/css/main.css?v=1.0.4" as="style">
+    <link rel="preload" href="/static/js/main.js?v=1.0.4" as="script">
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Калькулятор ремонта квартир." />
@@ -20,7 +20,7 @@
 
     <meta name="yandex-verification" content="7ceb4083a568134c" />
 
-    <link rel="stylesheet" href="/static/css/main.css?v=1.0.3">
+    <link rel="stylesheet" href="/static/css/main.css?v=1.0.4">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -57,7 +57,7 @@
         </div>
     </footer>
     <div class="info-conteiner"></div>
-    <script src="/static/js/main.js?v=1.0.3"></script>
+    <script src="/static/js/main.js?v=1.0.4"></script>
 
     <script src="https://www.google.com/recaptcha/api.js?render={{env("RECAPTCHA_V3_PUBLIC")}}"></script>
 
