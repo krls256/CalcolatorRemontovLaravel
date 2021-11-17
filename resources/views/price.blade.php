@@ -262,6 +262,7 @@
             <div class="modal-layout">
 
                 <form id="send-application" data-recaptcha-public="{{env("RECAPTCHA_V3_PUBLIC")}}">
+                    @clientdata
                     <div class="window-notif my-2"></div>
                     <input type="hidden" name="id" />
                     <span>Ваше имя</span>
