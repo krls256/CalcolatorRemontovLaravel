@@ -88,7 +88,6 @@ class globalController extends Controller
                 'message'   => "Одно из полей заполнено не коректно."
             ]);
         }
-
         $email = $applicationRepository->getCompanyEmail($data['id']);
         if($email) {
             Mail::to($email)
